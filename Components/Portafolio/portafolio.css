@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    background:white;
+    padding: 20px;
+    color: white;
+  }
+  
+  h1 {
+    color: white;
+  }
+  thead{
+    color:  #7672F2;
+  }
+  
+  .contenedor {    
+   background:  linear-gradient(#0D0E26, #1F0840);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .portafolio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .ganancia {
+    color: green;
+  }
+  
+  .perdida {
+    color: red;
+  }

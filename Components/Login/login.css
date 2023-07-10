@@ -1,11 +1,12 @@
+
+
 body{
     /*background-color: #0D0E26 ;*/ 
     /*background-color: #2A0859;*/
     /*background-color: #1F0840;*/
     /*background-color: #7672F2;*/
-
    /*background-color: #5852F2;*/
-   background: linear-gradient(#0D0E26, #1F0840);
+   background:  linear-gradient(#0D0E26, #1F0840);
    display: flex;
    justify-content: center;
    align-items: center;
