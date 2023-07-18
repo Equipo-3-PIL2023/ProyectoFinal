@@ -4,7 +4,6 @@
        display: flex;
        justify-content: center;
        align-items: center;
-       height: 100vh;
        color: white;   
 }
 
@@ -15,4 +14,20 @@
 }
 
 
+.btn-bd-primary {
+    --bs-btn-font-weight: 600 !important;
+    --bs-btn-color: #ffffff!important;
+    --bs-btn-bg: #14c78b!important;
+    --bs-btn-border-color: #14c78b !important;
+    --bs-btn-hover-color: rgb(255, 255, 255)!important;
+    --bs-btn-hover-bg: #0b865d !important;;
+    --bs-btn-hover-border-color: #0b865d !important;
+    --bs-btn-focus-shadow-rgb: #0b865d !important;
+    --bs-btn-active-color: #0b865d !important;
+    --bs-btn-active-bg: #0b865d !important;;
+    --bs-btn-active-border-color: #0b865d !important;;
+  }
+
+
+  
   
