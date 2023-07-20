@@ -8,6 +8,6 @@ h2, h5{
 }
 
 .carousel-inner img {
-    max-height: 60vh;
-    max-width: 60vh;
+    max-height: 40vh;
+    max-width: 40vh;
 }
