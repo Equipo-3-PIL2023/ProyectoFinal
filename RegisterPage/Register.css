@@ -1,0 +1,26 @@
+body{
+    background:  linear-gradient(#0D0E26, #1F0840);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* max-height: 100vh; */
+    color: white;
+    
+ }
+ 
+ form{
+     width: 80%;    
+ }
+ 
+ main{
+     background-color: #0D0E2666;
+     max-height: 80%;
+     /* width: 60%; */
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     box-shadow: rgb(88, 82, 242) 0px 0px 3px 1px;
+     border-radius: 10px;
+     padding-bottom: 20px;
+ }
