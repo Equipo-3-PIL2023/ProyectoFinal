@@ -6,6 +6,7 @@ import { ComprarAccionesComponent } from './comprarAcciones/comprarAcciones.comp
 import { RegistrerComponent } from './forms/registrer/registrer.component';
 import { LandingComponent } from './landing/landing.component';
 import { TablaCotizacionesComponent } from './tablaCotizaciones/tablaCotizaciones.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ import { TablaCotizacionesComponent } from './tablaCotizaciones/tablaCotizacione
     TablaCotizacionesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     LoginComponent,
