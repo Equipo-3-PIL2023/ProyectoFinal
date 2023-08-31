@@ -1,0 +1,20 @@
+.navbar {
+    overflow: hidden;
+    background:  linear-gradient(#05060f, #2e0b5e);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  #navbarbody{
+    background:  linear-gradient(#05060f, #2e0b5e);
+  }
+
+ #navbarbody a {
+    color:#f2f2f2;
+  }
+  
+ #navbarbody a:hover {
+    background-color: #ff1414;
+ }
