@@ -1,0 +1,13 @@
+.head {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 1em;
+    background: linear-gradient(#05060f, #2e0b5e);
+  }
+  
+  .logo {
+    width: 15%;
+    height: auto;
+  
+  }
