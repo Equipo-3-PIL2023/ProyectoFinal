@@ -6,8 +6,10 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { RegistrerComponent } from './pages/forms/registrer/registrer.component';
 import { ComprarAccionesComponent } from './pages/comprarAcciones/comprarAcciones.component';
 
+
 const routes: Routes = [
-  {path: '', component: LandingComponent },
+  {path:"", redirectTo:"/landing", pathMatch:"full"},
+  {path: 'landing', component: LandingComponent },
   {path: 'login' , component: LoginComponent},
   {path: 'portafolio', component:PortafolioComponent},
   {path: 'home', component: LandingComponent},
