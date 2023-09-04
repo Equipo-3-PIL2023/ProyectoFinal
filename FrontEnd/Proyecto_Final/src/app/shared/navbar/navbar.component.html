@@ -16,22 +16,22 @@
                          Pagina de inicio 
                         </a>
                    <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" >Home</a></li>
+                    <li><a class="dropdown-item" routerLink="landing">Home</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li> 
-                    <li *ngIf="!loginOff"><a class="dropdown-item" routerlink="/Portafolio">Portafolio</a></li>
+                    <li *ngIf="!loginOff"><a routerLink="/portafolio" class="dropdown-item">Portafolio</a></li>
                    </ul>
                     </li>
                    
                     <li class="nav-item" *ngIf="loginOff">
-                        <a class="nav-link active" aria-current="page" routerlink="" >Log in</a>
+                        <a routerLink="/login" class="nav-link active" aria-current="page">Log in</a>
                     </li>
                     <li class="nav-item" *ngIf="loginOff">
-                        <a class="nav-link active" aria-current="page" routerlink="">Registrarse</a>
+                        <a routerLink="/register" class="nav-link active" aria-current="page">Registrarse</a>
                     </li>
                     <li class="nav-item" *ngIf="!loginOff">
-                        <a class="nav-link active" aria-current="page" routerlink="">Cerrar Sesion</a>
+                        <a class="nav-link active" aria-current="page" routerLink="">Cerrar Sesion</a>
                     </li>
                 </ul>
               
