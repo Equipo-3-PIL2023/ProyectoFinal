@@ -1,0 +1,171 @@
+main {
+  background-color: #1f0840;
+  color: #f2f2f2;
+  font-weight: 500 !important;
+}
+
+.nosotros {
+  background-color: #1f0840;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 50px;
+}
+.btn-outline {
+  background-color: rgb(100, 57, 255);
+  box-shadow: rgb(100, 57, 225) 0px 0px 3px 1px;
+  border-radius: 10px;
+  border: 0px;
+  width: auto;
+  color: #f2f2f2;
+}
+
+.direcciones {
+  width: 14%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.outline-title {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: rgb(100, 57, 255);
+  text-shadow: 0px 0px 3px 1px rgb(100, 57, 255) 0px opx 3px 1px;
+}
+
+.limited-width-paragraph {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#primeraInversion {
+  background-color: rgb(100, 57, 255);
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+#imagenPrimeraInversion {
+  max-width: 400px;
+  height: auto;
+  image-rendering: auto;
+  padding: 5%;
+}
+
+#crearCuenta,
+#compraAhora {
+  background-color: white;
+  color: #1f0840;
+  box-shadow: none;
+  border: #1f0840;
+  box-shadow: #1f0840 0px 0px 3px 1px;
+  font-weight: 600 !important;
+}
+
+#crearCuenta:hover,
+#compraAhora:hover {
+  background-color: #1f0840;
+  color: white;
+  box-shadow: white 0px 0px 3px 1px;
+  border-radius: 10px;
+  border: 0px;
+  width: auto;
+}
+
+
+#informes {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.col-sm-2 {
+  /* width: 200px; */
+  height: auto;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.consulta {
+  background-color: #0d0e2666;
+  box-shadow: rgb(88, 82, 242) 0px 0px 3px 1px;
+  border-radius: 10px;
+  margin: 20px;
+  padding: auto;
+  /* margin-left: 20px;
+  margin-right: 20px; */
+  /* padding-top: 12px;
+  padding-bottom: 12px; */
+  width: 200px;
+  height: 200px;
+  border: none;
+  color: white;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.leerMas {
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0d0e2666;
+  box-shadow: rgb(88, 82, 242) 0px 0px 3px 1px;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: rgb(100, 57, 255);
+  text-shadow: 0px 0px 3px 1px rgb(100, 57, 255) 0px opx 3px 1px;
+  font-size: 15px;
+  /* justify-content: end; */
+}
+
+.leerMas:hover {
+  border-color: white;
+  box-shadow: white 0px 0px 3px 1px;
+  -webkit-text-stroke-color: white;
+  text-shadow: white;
+}
+
+#cotizaciones {
+  background-color: rgb(88, 82, 242);
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.carousel-inner img {
+  max-height: 40vh;
+  max-width: 40vh;
+}
+
+.cajas {
+  height: 130px;
+  /* padding-top: 5%; */
+}

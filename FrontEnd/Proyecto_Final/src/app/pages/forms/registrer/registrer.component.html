@@ -1,0 +1,158 @@
+<section class="col-sm-12 col-md-12 col-lg-12 mx-auto fondo">
+  <div id="login" class="animated fadeIn">
+    <h1 class="text-center mt-1 letras">Registrarse</h1>
+    <form [formGroup]="registerForm" (submit)="login()">
+      <div class="row">
+        <div class="col-6 my-1">
+          <label class="form-label letras">Nombre</label>
+          <input class="form-control" id="inputName" />
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="name.errors?.['required']">
+              El nombre es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-6 my-1">
+          <label class="form-label letras">Apellido</label>
+          <input class="form-control" id="inputLastname" />
+          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="lastname.errors?.['required']">
+              El apellido es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-4 my-1">
+          <label class="form-label letras">Día</label>
+          <input class="form-control" type="number" id="inputDay" />
+          <div *ngIf="day.invalid && (day.dirty || day.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="day.errors?.['required']">
+              El día es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-4 my-1">
+          <label class="form-label letras">Mes</label>
+          <input class="form-control" type="number" id="inputMonth" />
+          <div *ngIf="month.invalid && (month.dirty || month.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="month.errors?.['required']">
+              El mes es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-4 my-1">
+          <label class="form-label letras">Año</label>
+          <input class="form-control" type="number" id="inputAge" />
+          <div *ngIf="age.invalid && (age.dirty || age.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="age.errors?.['required']">
+              El año es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-6 my-1">
+          <label class="form-label letras">Tipo de documento</label>
+          <input class="form-control" id="inputTypedocument" />
+          <div *ngIf="type_document.invalid && (type_document.dirty || type_document.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="type_document.errors?.['required']">
+              El tipo de documento es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-6 my-1">
+          <label class="form-label letras">N° D.N.I</label>
+          <input class="form-control" type="number" id="inputNumberdocument" />
+          <div *ngIf="number_document.invalid && (number_document.dirty || number_document.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="number_document.errors?.['required']">
+              El numero del documento es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-3 my-1">
+          <label class="form-label letras">País</label>
+          <input class="form-control" id="inputCountry" />
+          <div *ngIf="country.invalid && (country.dirty || country.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="country.errors?.['required']">
+              El país es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-3 my-1">
+          <label class="form-label letras">Provincia</label>
+          <input class="form-control" id="inputState" />
+          <div *ngIf="state.invalid && (state.dirty || state.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="state.errors?.['required']">
+              La provincia es requerida
+          </div>
+          </div>
+        </div>
+        <div class="col-3 my-1">
+          <label class="form-label letras">Ciudad</label>
+          <input class="form-control" id="inputCity" />
+          <div *ngIf="city.invalid && (city.dirty || city.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="city.errors?.['required']">
+              La ciudad es requerida
+          </div>
+          </div>
+        </div>
+        <div class="col-3 my-1">
+          <label class="form-label letras">Código Postal</label>
+          <input class="form-control" id="inputZipcode" />
+          <div *ngIf="zip_code.invalid && (zip_code.dirty || zip_code.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="zip_code.errors?.['required']">
+              El código postal es requerido
+          </div>
+          </div>
+        </div>
+        <div class="col-12 my-1">
+          <label class="form-label letras">Email</label>
+          <input class="form-control" type="email" id="inputEmail" />
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                class="text-danger mb-0 mt-1">
+                <div *ngIf="email.errors?.['required']">
+                    El email es requerido
+                </div>
+                <div *ngIf="email.errors?.['email']">
+                    El formato del email es incorrecto.
+                </div>
+            </div>
+        </div>
+        <div class="col-6 my-1">
+          <label class="form-label letras mt-1">Contraseña</label>
+          <input class="form-control" type="password" id="inputPassword" />
+          <div *ngIf="password.errors?.['required']">
+            <div *ngIf="password.errors?.['required']">
+              La contraseña es requerida
+          </div>
+        </div>
+        </div>
+        <div class="col-6 my-1">
+          <label class="form-label letras mt-1">Confirmar Contraseña</label>
+          <input class="form-control" type="password" id="inputPasswordrepeat" />
+          <div *ngIf="confirm_password.errors?.['required']">
+            <div *ngIf="confirm_password.errors?.['required']">
+              La contraseña debe ser igual
+          </div>
+        </div>
+        </div>
+        <div class="col-12 my-1">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+            <label class="form-check-label" checked for="flexCheckChecked">
+              Recibir novedades.
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+            <label class="form-check-label" for="flexCheckDefault">
+              Acepto los terminos de condiciones de uso.
+            </label>
+          </div>
+        </div>
+        <div class="col-12 mt-2 text-center">
+          <button type="submit"  class="btn btn-primary btn-block" >
+            Registrarme
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+body{
+    background:  linear-gradient(#0D0E26, #1F0840);
+    height: 100vh;
+    /* font-family: "Poppins", sans-serif; */
+    color: #f2f2f2;
+}
+
+main{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+#comprarAcciones{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;   
+  
+}
+
+.section-bg{
+ background-color: #0D0E2666;
+ box-shadow: rgb(88, 82, 242) 0px 0px 3px 1px;
+ border-radius: 10px;
+}
+
+
+.btn-bd-primary {
+ --bs-btn-font-weight: 600 !important;
+ --bs-btn-color: #ffffff!important;
+ --bs-btn-bg: #14c78b!important;
+ --bs-btn-border-color: #14c78b !important;
+ --bs-btn-hover-color: rgb(255, 255, 255)!important;
+ --bs-btn-hover-bg: #0b865d !important;;
+ --bs-btn-hover-border-color: #0b865d !important;
+ --bs-btn-focus-shadow-rgb: #0b865d !important;
+ --bs-btn-active-color: #0b865d !important;
+ --bs-btn-active-bg: #0b865d !important;;
+ --bs-btn-active-border-color: #0b865d !important;;
+}
+
+.badge{
+  font-size: 15px;
+}

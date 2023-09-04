@@ -106,8 +106,8 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-bottom: 30px;
-  padding-top: 30px;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 .col-sm-2 {
@@ -121,7 +121,7 @@ main {
   text-align: center;
 }
 
-.col-sm-4 {
+.consulta {
   background-color: #0d0e2666;
   box-shadow: rgb(88, 82, 242) 0px 0px 3px 1px;
   border-radius: 10px;
