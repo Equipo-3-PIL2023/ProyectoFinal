@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,9 +14,9 @@ export class LoginComponent implements OnInit {
     email:['', [Validators.required , Validators.email] ],
     password: ['',Validators.required]
   });
-  
+  token:string = "";
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router:Router) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,11 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value).subscribe({
-      next: (data) => {console.log(data);},
+      next: (data) => {
+        console.log(data);
+        this.token = data.token;
+        this.router.navigate(['/portafolio'])
+      },
       error: (error) => {console.log(error);},
       complete:()=> {}
     })

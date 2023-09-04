@@ -16,18 +16,18 @@
                          Pagina de inicio 
                         </a>
                    <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" routerlink="/Home">Home</a></li>
+                    <li><a class="dropdown-item" >Home</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li> 
-                    <li><a class="dropdown-item" routerlink="/Portafolio">Portafolio</a></li>
+                    <li *ngIf="!loginOff"><a class="dropdown-item" routerlink="/Portafolio">Portafolio</a></li>
                    </ul>
                     </li>
                    
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" routerlink="">Log in</a>
+                    <li class="nav-item" *ngIf="loginOff">
+                        <a class="nav-link active" aria-current="page" routerlink="" >Log in</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="loginOff">
                         <a class="nav-link active" aria-current="page" routerlink="">Registrarse</a>
                     </li>
                     <li class="nav-item" *ngIf="!loginOff">
