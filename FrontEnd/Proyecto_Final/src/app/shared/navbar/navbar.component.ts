@@ -8,15 +8,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent {
   imagenlogo:string= "./assets/imagenes/logo-solo.png";
-  isNavbarCollapsed = true;
+  // isNavbarCollapsed = true;
   loginOff:boolean = true;
   constructor(private authService:AuthService){
     
   }
   
-  toggleNavbar() {
-    this.isNavbarCollapsed = !this.isNavbarCollapsed;
-  }
+  // toggleNavbar() {
+  //   this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  // }
   ngOnInit(){
     this.authService.isUserLoginOn.subscribe({
       next:(isUserLoginOn:boolean)=>{
