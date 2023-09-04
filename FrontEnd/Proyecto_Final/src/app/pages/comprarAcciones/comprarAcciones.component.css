@@ -39,3 +39,7 @@ main{
  --bs-btn-active-bg: #0b865d !important;;
  --bs-btn-active-border-color: #0b865d !important;;
 }
+
+.badge{
+  font-size: 15px;
+}

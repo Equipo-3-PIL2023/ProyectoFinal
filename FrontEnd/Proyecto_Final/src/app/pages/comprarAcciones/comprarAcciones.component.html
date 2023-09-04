@@ -23,7 +23,7 @@
                         Símbolo
                     </div>
                     <div class="col-md-6">
-                        <select class="form-control">
+                        <select #drop (change)="getBySimbolo(drop.value)" id="dropdownSimbolo" class="form-control">
                             <option *ngFor="let item of listSimbolos" >{{item.simbolo}}</option>
                         </select>
                     </div>
@@ -34,7 +34,7 @@
                         Precio actual
                     </div>
                     <div class="col-md-6">
-                        <span *ngIf="" class="badge bg-primary">$24.434,23</span>
+                        <span class="badge bg-primary">$ARS {{precioAccion}}</span>
                     </div>
                 </div>
     
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="input-group flex-nowrap">                        
-                            <input type="text" class="form-control" placeholder="Ejemplo: 120" aria-label="Username" aria-describedby="addon-wrapping">
+                            <input #cantidad type="number" min="1" class="form-control" value="1" (keyup)="calcularTotal(cantidad.value)" (click)="calcularTotal(cantidad.value)" placeholder="Ejemplo: 120" aria-label="Username" aria-describedby="addon-wrapping">
                           </div>
                     </div>
                 </div>
@@ -69,13 +69,13 @@
                         Precio total
                     </div>
                     <div class="col-md-6">
-                        <span class="badge bg-primary"></span>
+                        <span class="badge bg-primary">$ARS {{precioTotal}}</span>
                     </div>
                 </div>
     
                 <div class="row p-2 mt-3">
                     <div class="col-md-6 p-1">
-                        <button type="button" class="btn btn-danger">Cancelar compra</button>
+                        <button type="button" class="btn btn-primary">Ir a cotizaciones</button>
                     </div>
                     <div class="col-md-6 p-1">
                         <button type="button" class="btn btn-bd-primary">Comprar acciones</button>
