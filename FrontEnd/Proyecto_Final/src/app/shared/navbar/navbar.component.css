@@ -18,3 +18,7 @@
  #navbarbody a:hover {
     background-color: #ff1414;
  }
+
+ #navbarNav {
+  justify-content: right;
+ }

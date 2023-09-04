@@ -7,11 +7,15 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  isNavbarCollapsed = true;
   loginOff:boolean = true;
   constructor(private authService:AuthService){
     
   }
-
+  
+  toggleNavbar() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
   ngOnInit(){
     this.authService.isUserLoginOn.subscribe({
       next:(isUserLoginOn:boolean)=>{
