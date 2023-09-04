@@ -1,20 +1,73 @@
-<footer class="py-2 mt-4 footer">
-  <ul class="nav justify-content-center border-bottom pb-2 mb-2">
-    <li class="nav-item">
-      <a href="#" class="nav-link px-2">Home</a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link px-2">Features</a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link px-2">Pricing</a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link px-2">FAQs</a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link px-2">About</a>
-    </li>
-  </ul>
-  <p class="text-center">© 2022 Company, Inc</p>
+<footer>
+  <footer class="footer">
+      <div class="row">
+        <div class="col-sm-2 footer-container"> 
+          <img id="logo-footer" class="logo" [src]="imagenlogo" alt="logotipo broker" />
+         </div>
+        <div class="col-sm-6 footer-container">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">FAQs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">About</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-4 footer-container">
+          <ul class="nav">
+            <li>
+              <h6>Seguinos en</h6>
+              <ul class="nav">
+                <li>
+                  <a target="_blank" rel="noreferrer" aria-label="Instagram">
+                    <img class="redes" [src]="logoinstagram" alt="Instagram">
+                  </a>
+                </li>
+                <li >
+                  <a target="_blank" rel="noreferrer" aria-label="Twitter">
+                    <img class="redes" [src]="logotwitter" alt="Twitter">
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                    <img class="redes" [src]="logoLinkedin" alt="LinkedIn">
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" aria-label="Facebook">
+                    <img class="redes" [src]="logofacebook" alt="Facebook">
+                  </a>
+                </li>
+              </ul>
+              <br>
+              <h6>Descargá la app</h6>
+              <ul class="nav">
+                <li>
+                  <a target="_blank" rel="noreferrer" aria-label="PlayStore">
+                    <img class="redes" [src]="logoplaystore" alt="PlayStore">
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" rel="noreferrer" aria-label="AppleStore">
+                    <img class="redes" [src]="logoapple" alt="AppleStore">
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="text-center">© 2022 Company, Inc</p>
+    </footer>
 </footer>

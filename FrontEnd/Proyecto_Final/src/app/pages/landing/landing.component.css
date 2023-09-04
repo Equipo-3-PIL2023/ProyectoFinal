@@ -110,22 +110,25 @@ main {
   background-color: #0d0e2666;
   box-shadow: rgb(88, 82, 242) 0px 0px 3px 1px;
   border-radius: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  margin: 20px;
+  padding: auto;
+  /* margin-left: 20px;
+  margin-right: 20px; */
+  /* padding-top: 12px;
+  padding-bottom: 12px; */
   width: 200px;
-  height: auto;
+  height: 200px;
   border: none;
   color: white;
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
 .leerMas {
+  margin: 10px;
   border: none;
   border-radius: 5px;
   background-color: #0d0e2666;
@@ -134,6 +137,7 @@ main {
   -webkit-text-stroke-color: rgb(100, 57, 255);
   text-shadow: 0px 0px 3px 1px rgb(100, 57, 255) 0px opx 3px 1px;
   font-size: 15px;
+  /* justify-content: end; */
 }
 
 .leerMas:hover {
@@ -156,15 +160,12 @@ main {
   text-align: center;
 }
 
-/* h6 {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-bottom: 0px;
-} */
-
 .carousel-inner img {
   max-height: 40vh;
   max-width: 40vh;
+}
+
+.cajas {
+  height: 130px;
+  /* padding-top: 5%; */
 }

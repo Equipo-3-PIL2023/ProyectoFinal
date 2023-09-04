@@ -7,6 +7,7 @@ import { RegistrerComponent } from './forms/registrer/registrer.component';
 import { LandingComponent } from './landing/landing.component';
 import { TablaCotizacionesComponent } from './tablaCotizaciones/tablaCotizaciones.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     LoginComponent,
