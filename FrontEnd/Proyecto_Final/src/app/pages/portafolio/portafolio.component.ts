@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Portafolio } from './clases/portafolio';
 import { AuthService } from 'src/app/services/auth.service';
+import { Acciones } from './clases/acciones';
 
 @Component({
   selector: 'app-portafolio',
@@ -11,9 +12,7 @@ export class PortafolioComponent implements OnInit {
 
   saldoCuenta:number = 0;
   totalInvertido: number = 0;
-  portafolio: Portafolio[] = [
-    
-  ];
+  portafolio: Acciones[] = [];
   
 
   constructor(private authService:AuthService) { }
