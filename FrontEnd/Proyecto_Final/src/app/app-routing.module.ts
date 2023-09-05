@@ -9,7 +9,9 @@ import { ComprarAccionesComponent } from './pages/comprarAcciones/comprarAccione
 
 const routes: Routes = [
   {path:"", redirectTo:"/landing", pathMatch:"full"},
+  {path:"", redirectTo:"", pathMatch:"full"},
   {path: 'landing', component: LandingComponent },
+  {path: '', component: LandingComponent },
   {path: 'login' , component: LoginComponent},
   {path: 'portafolio', component:PortafolioComponent},
   {path: 'home', component: LandingComponent},
