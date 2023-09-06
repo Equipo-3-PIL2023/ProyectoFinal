@@ -28,6 +28,7 @@ export class PortafolioComponent implements OnInit {
         
         this.portafolio = portafolioItem.acciones.map((item: any) => ({
           accion: item.accion,
+          valorAccion: item.valorAccion,
           cantidad: item.cantidad,
           valor: item.valor,
           ganancia: item.ganancia,

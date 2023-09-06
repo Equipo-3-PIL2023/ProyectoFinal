@@ -1,4 +1,4 @@
-<div class="contenedor margin-portafolio tamanio">
+<div class="contenedor margin-portafolio tamanio animated fadeIn">
   <h1>Mi Portafolio</h1>
   <div class="portafolio">
     <div style="font-size: 24px;">
@@ -12,6 +12,7 @@
     <thead>
       <tr>
         <th>Acciones Compradas</th>
+        <th>Valor Unitario</th>
         <th>Cantidad</th>
         <th>Valor comprometido</th>
         <th>Ganancia o Pérdida</th>
@@ -21,6 +22,7 @@
       <ng-container *ngFor="let item of portafolio">
         <tr>
           <td>{{ item.accion }}</td>
+          <td>{{ item.valorAccion | currency:'USD':'symbol':'1.2-2' }}</td>
           <td>{{ item.cantidad }}</td>
           <td>{{ item.valor | currency:'USD':'symbol':'1.2-2' }}</td>
           <td [ngStyle]="{'color': item.ganancia > 0 ? 'green' : (item.perdida > 0 ? 'red' : 'black')}">
