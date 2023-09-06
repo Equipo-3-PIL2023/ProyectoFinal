@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  imagenlogo:string= "./assets/imagenes/logo-solo.png";
   loginOff:boolean = true;
   constructor(private authService:AuthService){
     
