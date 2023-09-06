@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegistrerComponent implements OnInit {
 
+  
   registerForm = this.formBuilder.group({
     name:['', Validators.required  ],
     lastname:['', Validators.required  ],
