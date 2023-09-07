@@ -1,0 +1,79 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  background: linear-gradient(#0d0e26, #1f0840);
+  /* padding: 20px; */
+  color: white;
+}
+
+h1 {
+  color: white;
+}
+
+thead {
+  color: #7672f2;
+}
+
+.containter {
+  padding: 20px;
+  border-radius: 5px;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+
+table-responsive {
+  display: flex;
+  width: 100%;
+  border-collapse: collapse;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(#0d0e26, #1f0840);
+}
+
+table table-striped {
+  display: flex;
+  width: 100%;
+  border-collapse: collapse;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(#0d0e26, #1f0840);
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilos para el encabezado */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilos para el botón CTA */
+table .btn {
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-green {
+  background-color: #57c957;
+  /* Cambia este color por uno de tu preferencia */
+}
+
+  .btn-green:hover {
+    background-color: #44b344;
+    /* Cambia este color por uno de tu preferencia para el estado hover */
+  }
+
+.margin-footer {
+  margin-top: 6.2rem;
+}
