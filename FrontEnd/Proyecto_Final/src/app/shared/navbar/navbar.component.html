@@ -11,17 +11,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li *ngIf="!loginOff">
+        <li class="nav-item">
+          <a routerLink="/landing" class="nav-link active" aria-current="page">Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cotizaciones" class="nav-link active" aria-current="page">Cotizaciones</a>
+        </li>
+        <li *ngIf="isLogin">
           <a routerLink="/portafolio" class="nav-link active" aria-current="page">Mi Portafolio</a>
-        </li>
-        <li class="nav-item" *ngIf="loginOff">
+        </li>      
+        <li class="nav-item" *ngIf="!isLogin">
           <a routerLink="/login" class="nav-link active" aria-current="page">Log in</a>
-        </li>
-        <li class="nav-item" *ngIf="loginOff">
+        </li>      
+        <li class="nav-item" *ngIf="!isLogin">
           <a routerLink="/register" class="nav-link active" aria-current="page">Registrarse</a>
         </li>
-        <li class="nav-item" *ngIf="!loginOff">
-          <a class="nav-link active" aria-current="page" routerLink="">Cerrar Sesion</a>
+        <li class="nav-item" *ngIf="isLogin">
+          <a (click)="logOut()" class="nav-link active" aria-current="page">Cerrar Sesion</a>
         </li>
       </ul>
     </div>
