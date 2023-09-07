@@ -7,14 +7,22 @@
     z-index: 1;
   }
   
-  #navbarbody{
-    background:  linear-gradient(#05060f, #2e0b5e);
-  }
+#navbarbody{
+background:  linear-gradient(#05060f, #2e0b5e);
+}
 
- #navbarbody a {
-    color:#f2f2f2;
-  }
-  
- #navbarbody a:hover {
-    background-color: #ff1414;
- }
+#navbarbody a {
+  color:#f2f2f2;
+}
+
+#navbarbody a:hover {
+  background-color: #ff1414;
+}
+
+#navbarNav {
+  justify-content: right;
+}
+
+#logo-navbar {
+  margin-right: 10px;
+}
