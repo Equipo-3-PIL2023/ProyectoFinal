@@ -7,17 +7,19 @@ import { Accion, ComprarAccionesService } from 'src/app/services/comprar-accione
   styleUrls: ['tablaCotizaciones.component.css']
 })
 export class TablaCotizacionesComponent implements OnInit {
-  cotizaciones: Accion[] = [];
+  cotizaciones: any;
 
   constructor(private comprarAccionesService: ComprarAccionesService) { }
 
   ngOnInit() {
     this.comprarAccionesService.getDatosAccion().subscribe(data => {
-      data.forEach((objeto: Accion) => {
+      /*data.forEach((objeto: Accion) => {
         console.log(objeto.simbolo);
         console.log(objeto.descripcion);
       });
-      this.cotizaciones = data;
+      this.cotizaciones = data;*/
+      this.cotizaciones = data["titulos"];
+      console.log(data);
     });
   }
 
