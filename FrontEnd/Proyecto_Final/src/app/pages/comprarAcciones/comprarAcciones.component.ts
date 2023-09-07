@@ -2,6 +2,8 @@ import { getCurrencySymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { find } from 'rxjs';
 import { ComprarAccionesService } from 'src/app/services/comprar-acciones.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-comprarAcciones',
@@ -15,7 +17,15 @@ export class ComprarAccionesComponent implements OnInit {
   precioAccion:any;
   precioTotal:number = 0;
   cantidadAccionnes:number = 1;
-  constructor(private comprarAccionesService:ComprarAccionesService) { }
+  compraForm:FormGroup;
+  constructor(private comprarAccionesService:ComprarAccionesService, private formBuilder:FormBuilder) {
+    this.compraForm = this.formBuilder.group({
+      mercado: ['', Validators.required],
+      simbolo: ['', Validators.required],
+      cantidad: ['', Validators.required]
+    })
+
+   }
 
   ngOnInit(): void{
     this.comprarAccionesService.getDatosAccion().subscribe({
@@ -67,5 +77,4 @@ export class ComprarAccionesComponent implements OnInit {
     this.precioTotal = Number((Number(this.cantidadAccionnes)*Number(this.precioAccion)).toFixed(2));;
     return this.precioTotal
   }
-
 }
