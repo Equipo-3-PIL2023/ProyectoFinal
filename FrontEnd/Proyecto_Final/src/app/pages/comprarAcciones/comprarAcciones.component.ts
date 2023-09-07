@@ -77,4 +77,10 @@ export class ComprarAccionesComponent implements OnInit {
     this.precioTotal = Number((Number(this.cantidadAccionnes)*Number(this.precioAccion)).toFixed(2));;
     return this.precioTotal
   }
+
+  comprarAcciones(){
+
+    console.log("Acciones compradas con exito")
+
+  }
 }
