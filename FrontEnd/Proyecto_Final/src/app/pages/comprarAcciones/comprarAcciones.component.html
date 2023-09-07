@@ -5,16 +5,23 @@
                 <h1 class="text-start p-3">Comprar acciones</h1>
             </div>
     
-            <form class="p-3 section-bg " action="">
+            <form class="p-3 section-bg " action="" [formGroup]="compraForm">
     
                 <div class="row p-2">
                     <div class="col-md-6">
                         Mercado
                     </div>
                     <div class="col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" formControlName="mercado">
                             <option>Argentina</option> 
                         </select>
+                        <!-- Mensaje de error de campo requerido -->
+                        <div
+                        *ngIf="compraForm.get('mercado')?.invalid && (compraForm.get('mercado')?.dirty || compraForm.get('mercado')?.touched)"
+                            class="text-danger"
+                        >
+                            Para realizar la compra este campo es requerido.
+                        </div>
                     </div>
                 </div>
     
@@ -23,9 +30,16 @@
                         Símbolo
                     </div>
                     <div class="col-md-6">
-                        <select #drop (change)="getBySimbolo(drop.value)" (change)="calcularTotal(cantidad.value)" id="dropdownSimbolo" class="form-control">
+                        <select formControlName="simbolo" #drop (change)="getBySimbolo(drop.value)" (change)="calcularTotal(cantidad.value)" id="dropdownSimbolo" class="form-control">
                             <option *ngFor="let item of listSimbolos" >{{item.simbolo}}</option>
                         </select>
+                        <!-- Mensaje de error de campo requerido -->
+                        <div
+                        *ngIf="compraForm.get('simbolo')?.invalid && (compraForm.get('simbolo')?.dirty || compraForm.get('simbolo')?.touched)"
+                            class="text-danger"
+                        >
+                            Para realizar la compra este campo es requerido.
+                        </div>
                     </div>
                 </div>
     
@@ -44,8 +58,15 @@
                     </div>
                     <div class="col-md-6">
                         <div class="input-group flex-nowrap">                        
-                            <input #cantidad type="number" min="1" class="form-control" value="1" (keyup)="calcularTotal(cantidad.value)" (click)="calcularTotal(cantidad.value)" placeholder="Ejemplo: 120" aria-label="Username" aria-describedby="addon-wrapping">
-                          </div>
+                            <input formControlName="cantidad" #cantidad type="number" min="1" class="form-control" value="1" (keyup)="calcularTotal(cantidad.value)" (click)="calcularTotal(cantidad.value)" placeholder="Ejemplo: 120" aria-label="Username" aria-describedby="addon-wrapping">
+                            <!-- Mensaje de error de campo requerido -->
+                        </div>
+                        <div
+                        *ngIf="compraForm.get('cantidad')?.invalid && (compraForm.get('cantidad')?.dirty || compraForm.get('cantidad')?.touched)"
+                            class="text-danger"
+                        >
+                            Para realizar la compra este campo es requerido.
+                        </div>
                     </div>
                 </div>
     
@@ -75,10 +96,10 @@
     
                 <div class="row p-2 mt-3">
                     <div class="col-md-6 p-1">
-                        <button type="button" class="btn btn-primary">Ir a cotizaciones</button>
+                        <button type="button" class="btn btn-primary" routerLink="/cotizaciones">Ir a cotizaciones</button>
                     </div>
                     <div class="col-md-6 p-1">
-                        <button type="button" class="btn btn-bd-primary">Comprar acciones</button>
+                        <button type="button" class="btn btn-bd-primary" [disabled]="!compraForm.valid">Comprar acciones</button>
                     </div>
                 </div>
     
