@@ -5,6 +5,7 @@ import { PortafolioComponent } from './pages/portafolio/portafolio.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { RegistrerComponent } from './pages/forms/registrer/registrer.component';
 import { ComprarAccionesComponent } from './pages/comprarAcciones/comprarAcciones.component';
+import { TablaCotizacionesComponent } from './pages/tablaCotizaciones/tablaCotizaciones.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'portafolio', component:PortafolioComponent},
   {path: 'home', component: LandingComponent},
   {path: 'register', component: RegistrerComponent},
-  {path: 'comprar', component: ComprarAccionesComponent}
+  {path: 'comprar', component: ComprarAccionesComponent},
+  {path: 'cotizaciones', component: TablaCotizacionesComponent}
 ];
 
 @NgModule({
