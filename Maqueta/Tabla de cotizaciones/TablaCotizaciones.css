@@ -1,4 +1,4 @@
-﻿body {
+body {
     font-family: 'Poppins', sans-serif;
     background: white;
     background: linear-gradient(#0d0e26, #1f0840);
@@ -15,16 +15,30 @@ thead {
     color: #7672f2;
 }
 
-.contenedor {
+.containter {
     padding: 20px;
     border-radius: 5px;
+    
     /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
 
-table {
+table-responsive {
+    display: flex;
     width: 100%;
     border-collapse: collapse;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(#0d0e26, #1f0840);
+}
+
+table table-striped {
+    display: flex;
+    width: 100%;
+    border-collapse: collapse;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(#0d0e26, #1f0840);
 }
 
 th,

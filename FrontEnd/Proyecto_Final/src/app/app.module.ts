@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([]),
     AppRoutingModule,
     SharedModule,
+    PagesModule,
     HttpClientModule
   ],
   providers: [],

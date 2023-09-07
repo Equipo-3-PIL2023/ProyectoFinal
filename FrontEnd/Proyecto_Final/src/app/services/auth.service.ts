@@ -6,7 +6,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class AuthService {
 
- url: string = "https://reqres.in/api/login";
+   url: string = "https://reqres.in/api/login";
+   urlPortafolio:string = "https://my-json-server.typicode.com/MaximoGalindo/users/portafolio"
   userLoginOn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
@@ -23,5 +24,9 @@ export class AuthService {
 
   get isUserLoginOn():Observable<boolean>{
     return this.userLoginOn.asObservable();
+  }
+
+  getPortafolio():Observable<any>{
+    return this.http.get(this.urlPortafolio)
   }
 }
