@@ -18,7 +18,7 @@ export class TablaCotizacionesComponent implements OnInit {
         console.log(objeto.descripcion);
       });
       this.cotizaciones = data;*/
-      this.cotizaciones = data["titulos"];
+      this.cotizaciones = data;
       console.log(data);
     });
   }

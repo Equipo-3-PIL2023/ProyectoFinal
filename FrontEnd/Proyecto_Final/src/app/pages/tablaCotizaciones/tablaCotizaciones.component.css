@@ -1,4 +1,4 @@
-body {
+.cotizaciones {
   font-family: 'Poppins', sans-serif;
   background: white;
   background: linear-gradient(#0d0e26, #1f0840);
@@ -38,6 +38,8 @@ table table-striped {
   align-items: center;
   background: linear-gradient(#0d0e26, #1f0840);
 }
+
+
 
 th,
 td {
