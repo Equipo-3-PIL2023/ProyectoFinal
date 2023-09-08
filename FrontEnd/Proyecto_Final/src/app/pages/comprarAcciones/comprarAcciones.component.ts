@@ -30,7 +30,7 @@ export class ComprarAccionesComponent implements OnInit {
   ngOnInit(): void{
     this.comprarAccionesService.getDatosAccion().subscribe({
       next: (listSimbolos) => {
-        this.listSimbolos = listSimbolos
+        this.listSimbolos = listSimbolos["titulos"]
         this.precioAccion = this.listSimbolos[0].puntas.precioCompra ==
          null ? "Sin precio definido": Number(this.listSimbolos[0].puntas.precioCompra);
          this.calcularTotal(this.cantidadAccionnes)

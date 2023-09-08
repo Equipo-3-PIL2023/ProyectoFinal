@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ComprarAccionesService {
-  url: string = "http://localhost:3000/titulos";
+  url: string = "./assets/Data/06-07-23.json";
 
   constructor(private http: HttpClient) { }
 
