@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SharedService } from './shared.service';
+import { JsonLoaderService } from './json-loader.service';
 
-describe('SharedService', () => {
-  let service: SharedService;
+describe('JsonLoaderService', () => {
+  let service: JsonLoaderService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SharedService);
+    service = TestBed.inject(JsonLoaderService);
   });
 
   it('should be created', () => {

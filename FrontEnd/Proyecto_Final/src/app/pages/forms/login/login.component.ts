@@ -21,13 +21,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    console.log(this.loginForm.value)
+  login(){    
     this.authService.login(this.loginForm.value).subscribe({
       next: (data) => {
-        console.log(data);
         this.token = data.token;
-        this.router.navigate(['/portafolio'])
+        this.router.navigate(['/portafolio'])   
       },
       error: (error) => {console.log(error);},
       complete:()=> {}

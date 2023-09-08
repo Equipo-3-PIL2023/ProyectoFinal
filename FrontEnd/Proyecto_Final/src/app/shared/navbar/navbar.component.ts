@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,16 +8,30 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  loginOff:boolean = true;
-  constructor(private authService:AuthService){
+  imagenlogo: string = "./assets/imagenes/logo-solo.png";
+  // isNavbarCollapsed = true;
+  isLogin:boolean=true;
+  
+  constructor(private authService: AuthService, private route: Router) {
     
   }
-
-  ngOnInit(){
+ 
+  
+  // toggleNavbar() {
+  //   this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  // }
+  ngOnInit() {
     this.authService.isUserLoginOn.subscribe({
-      next:(isUserLoginOn:boolean)=>{
-        this.loginOff =! isUserLoginOn;
+      next:(isLoginOn:boolean)=>{
+        console.log(this.isLogin);
+        this.isLogin =! isLoginOn
       }
     })
-  } 
+  }
+
+  logOut(){
+    this.isLogin=false;
+    this.authService.logout()
+  }
+  
 }
