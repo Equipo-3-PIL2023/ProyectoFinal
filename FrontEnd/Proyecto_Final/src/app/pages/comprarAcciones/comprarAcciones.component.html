@@ -29,20 +29,20 @@
         <div class="col-md-6">Símbolo</div>
         <div class="col-md-6">
           <select
-            formControlName="simbolo"
+            formControlName="simbolo"          
             #drop
             (change)="getBySimbolo(drop.value)"
             (change)="calcularTotal(cantidad.value)"
             id="dropdownSimbolo"
-            class="form-control"
+            class="form-control"            
           >
-            <option *ngFor="let item of listSimbolos">
+            <option id="optionDrop" *ngFor="let item of listSimbolos" [selected]="item.simbolo === symbolDrop">
               {{ item.simbolo }}
             </option>
           </select>
           <!-- Mensaje de error de campo requerido -->
           <div
-            *ngIf="
+            *ngIf="            
               compraForm.get('simbolo')?.invalid &&
               (compraForm.get('simbolo')?.dirty ||
                 compraForm.get('simbolo')?.touched)

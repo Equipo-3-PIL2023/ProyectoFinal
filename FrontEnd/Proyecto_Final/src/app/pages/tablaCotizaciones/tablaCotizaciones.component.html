@@ -31,7 +31,7 @@
                         <td>{{ cotizacion.minimo  }}</td>
                         <td>{{ cotizacion.maximo  }}</td>
                         <td>{{ cotizacion.ultimoCierre  }}</td>
-                        <td><button class="btn btn-green">Comprar</button></td>
+                        <td><button (click)="cargarAccion(cotizacion.simbolo)" routerLink="/comprar" class="btn btn-green">Comprar</button></td>
                     </tr>
                 </tbody>
             </table>

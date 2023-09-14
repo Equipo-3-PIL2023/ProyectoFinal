@@ -1,17 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComprarAccionesService {
   url: string = "./assets/Data/06-07-23.json";
-
+  simbolo:string = '';
   constructor(private http: HttpClient) { }
 
   getDatosAccion(): Observable<any> {
     return this.http.get<Accion[]>(this.url);
+  }
+  getAccionSeleccionada(simboloAccion:string){
+    this.simbolo = simboloAccion
   }
 }
 

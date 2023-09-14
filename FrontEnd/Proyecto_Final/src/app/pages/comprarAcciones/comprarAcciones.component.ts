@@ -18,6 +18,7 @@ export class ComprarAccionesComponent implements OnInit {
   precioTotal:number = 0;
   cantidadAccionnes:number = 1;
   compraForm:FormGroup;
+  accionSeleccionada:any;
   constructor(private comprarAccionesService:ComprarAccionesService, private formBuilder:FormBuilder) {
     this.compraForm = this.formBuilder.group({
       mercado: ['', Validators.required],
@@ -30,10 +31,17 @@ export class ComprarAccionesComponent implements OnInit {
   ngOnInit(): void{
     this.comprarAccionesService.getDatosAccion().subscribe({
       next: (listSimbolos) => {
+        this.symbolDrop = this.comprarAccionesService.simbolo
         this.listSimbolos = listSimbolos["titulos"]
-        this.precioAccion = this.listSimbolos[0].puntas.precioCompra ==
-         null ? "Sin precio definido": Number(this.listSimbolos[0].puntas.precioCompra);
-         this.calcularTotal(this.cantidadAccionnes)
+        for (let item of this.listSimbolos){
+          if (item.simbolo === this.symbolDrop){
+            this.accionSeleccionada = item;
+          }
+        } 
+        this.precioAccion = this.accionSeleccionada.puntas.precioCompra ==
+        null ? "Sin precio definido": Number(this.accionSeleccionada.puntas.precioCompra);
+        this.precioTotal = 0;
+        console.log(this.symbolDrop)
       },
       error: (error) => {
         console.error(error);
@@ -83,4 +91,5 @@ export class ComprarAccionesComponent implements OnInit {
     console.log("Acciones compradas con exito")
 
   }
+
 }

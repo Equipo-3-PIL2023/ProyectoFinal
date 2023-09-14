@@ -6,7 +6,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { RegistrerComponent } from './pages/forms/registrer/registrer.component';
 import { ComprarAccionesComponent } from './pages/comprarAcciones/comprarAcciones.component';
 import { TablaCotizacionesComponent } from './pages/tablaCotizaciones/tablaCotizaciones.component';
-
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {path:"", redirectTo:"/landing", pathMatch:"full"},
@@ -14,11 +14,11 @@ const routes: Routes = [
   {path: 'landing', component: LandingComponent },
   {path: '', component: LandingComponent },
   {path: 'login' , component: LoginComponent},
-  {path: 'portafolio', component:PortafolioComponent},
+  {path: 'portafolio', component:PortafolioComponent, canActivate:[AuthGuard]},
   {path: 'home', component: LandingComponent},
   {path: 'register', component: RegistrerComponent},
-  {path: 'comprar', component: ComprarAccionesComponent},
-  {path: 'cotizaciones', component: TablaCotizacionesComponent}
+  {path: 'comprar', component: ComprarAccionesComponent, canActivate:[AuthGuard]},
+  {path: 'cotizaciones', component: TablaCotizacionesComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
