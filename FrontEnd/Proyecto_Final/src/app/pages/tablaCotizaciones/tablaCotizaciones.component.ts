@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Accion, ComprarAccionesService } from 'src/app/services/comprar-acciones.service';
+import { ComprarAccionesComponent } from '../comprarAcciones/comprarAcciones.component';
 
 @Component({
   selector: 'app-tablaCotizaciones',
@@ -21,6 +22,10 @@ export class TablaCotizacionesComponent implements OnInit {
       this.cotizaciones = data["titulos"];
       console.log(data);
     });
+  }
+
+  cargarAccion(item:any){
+    this.comprarAccionesService.getAccionSeleccionada(item)
   }
 
 }

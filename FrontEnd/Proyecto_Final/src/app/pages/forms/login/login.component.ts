@@ -9,26 +9,30 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+  error?:string;
   loginForm = this.formBuilder.group({
     email:['', [Validators.required , Validators.email] ],
     password: ['',Validators.required]
   });
   token:string = "";
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router:Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private route:Router) { }
 
   ngOnInit() {
   }
 
-  login(){    
+  login(){
+    console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value).subscribe({
       next: (data) => {
-        this.token = data.token;
-        this.router.navigate(['/portafolio'])   
+        console.log(data);
+        this.route.navigate(['/portafolio'])
       },
-      error: (error) => {console.log(error);},
-      complete:()=> {}
+      error: (error) => {
+        this.error=error;
+        console.error(error)},
+      complete: () => {}
+      
     })
   }
 
