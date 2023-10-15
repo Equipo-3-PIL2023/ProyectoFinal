@@ -10,6 +10,9 @@ namespace SmartInvest.Repositories
 
         public DbSet<TransaccionModel> Transaccion { get; set; }
 
-
+        public async Task<List<TransaccionModel>> Get()
+        {
+            return await Transaccion.ToListAsync();
+        }
     }       
 }

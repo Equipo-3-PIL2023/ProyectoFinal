@@ -34,19 +34,19 @@ namespace SmartInvest.Migrations.TransaccionDB
                         .HasColumnType("int");
 
                     b.Property<float>("comision")
-                        .HasColumnType("real");
+                        .HasColumnType("decimal");
 
                     b.Property<DateTime>("fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("idAcciones")
+                    b.Property<int>("idAccion")
                         .HasColumnType("int");
 
                     b.Property<int>("idCuenta")
                         .HasColumnType("int");
 
                     b.Property<float>("precioCompra")
-                        .HasColumnType("real");
+                        .HasColumnType("decimal");
 
                     b.HasKey("idTransaccion");
 

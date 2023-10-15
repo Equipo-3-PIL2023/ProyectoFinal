@@ -1,4 +1,5 @@
-﻿using SmartInvest.Repositories;
+﻿using SmartInvest.Dtos.TransaccionDto;
+using SmartInvest.Repositories;
 
 namespace SmartInvest.Services
 {
@@ -9,6 +10,11 @@ namespace SmartInvest.Services
         public TransaccionService(TransaccionDBContext transaccionDbContext)
         {
             _transaccionDbContext = transaccionDbContext;
+        }
+
+        public async Task<List<TransaccionDto>> Get() 
+        { 
+            return _transaccionDbContext.Get().Result.Select(c => c.ToDo()).ToList();
         }
     }
 }

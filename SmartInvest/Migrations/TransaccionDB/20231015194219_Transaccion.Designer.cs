@@ -42,7 +42,7 @@ namespace SmartInvest.Migrations.TransaccionDB
                     b.Property<DateTime>("fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("idAcciones")
+                    b.Property<int>("idAccion")
                         .HasColumnType("int");
 
                     b.Property<int>("idCuenta")

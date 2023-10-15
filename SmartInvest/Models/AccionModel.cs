@@ -5,7 +5,7 @@ namespace SmartInvest.Models
 {
     public class AccionModel
     {
-        [Key] public int idAcciones { get; set; }
+        [Key] public int idAccion { get; set; }
         public string nombre { get; set; }
         public string simbolo { get; set; }
 

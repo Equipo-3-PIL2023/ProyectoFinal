@@ -17,12 +17,12 @@ namespace SmartInvest.Migrations.TransaccionDB
                 {
                     idTransaccion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idAcciones = table.Column<int>(type: "int", nullable: false),
+                    idAccion = table.Column<int>(type: "int", nullable: false),
                     idCuenta = table.Column<int>(type: "int", nullable: false),
                     fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    precioCompra = table.Column<float>(type: "real", nullable: false),
+                    precioCompra = table.Column<float>(type: "decimal", nullable: false),
                     cantidad = table.Column<int>(type: "int", nullable: false),
-                    comision = table.Column<float>(type: "real", nullable: false)
+                    comision = table.Column<float>(type: "decimal", nullable: false)
                 },
                 constraints: table =>
                 {

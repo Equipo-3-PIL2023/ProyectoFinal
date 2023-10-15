@@ -14,14 +14,14 @@ namespace SmartInvest.Migrations.AccionDB
                 name: "Acciones",
                 columns: table => new
                 {
-                    idAcciones = table.Column<int>(type: "int", nullable: false)
+                    idAccion = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     simbolo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Acciones", x => x.idAcciones);
+                    table.PrimaryKey("PK_Acciones", x => x.idAccion);
                 });
         }
 

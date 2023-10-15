@@ -23,11 +23,11 @@ namespace SmartInvest.Migrations.AccionDB
 
             modelBuilder.Entity("SmartInvest.Models.AccionModel", b =>
                 {
-                    b.Property<int>("idAcciones")
+                    b.Property<int>("idAccion")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idAcciones"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idAccion"));
 
                     b.Property<string>("nombre")
                         .IsRequired()
@@ -37,7 +37,7 @@ namespace SmartInvest.Migrations.AccionDB
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("idAcciones");
+                    b.HasKey("idAccion");
 
                     b.ToTable("Acciones");
                 });

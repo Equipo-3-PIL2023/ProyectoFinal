@@ -9,5 +9,10 @@ namespace SmartInvest.Repositories
             :base(options) { }
 
         public DbSet<AccionModel> Acciones {  get; set; }
+
+        public async Task<List<AccionModel>> Get()
+        {
+            return await Acciones.ToListAsync();
+        }
     }
 }
