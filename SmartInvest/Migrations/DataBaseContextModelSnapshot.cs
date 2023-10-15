@@ -10,7 +10,7 @@ using SmartInvest.Repositories;
 
 namespace SmartInvest.Migrations
 {
-    [DbContext(typeof(DataBaseContext))]
+    [DbContext(typeof(UsuarioDBContext))]
     partial class DataBaseContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -24,55 +24,58 @@ namespace SmartInvest.Migrations
 
             modelBuilder.Entity("SmartInvest.Models.UserModel", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("idUsuario")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUsuario"));
 
-                    b.Property<string>("Apellido")
+                    b.Property<string>("apellido")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Ciudad")
+                    b.Property<string>("ciudad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CodigoPostal")
+                    b.Property<int>("codigoPostal")
                         .HasColumnType("int");
 
-                    b.Property<string>("Dni")
+                    b.Property<string>("correo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("dni")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("FechaNacimiento")
+                    b.Property<DateTime>("fechaNacimiento")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Pais")
+                    b.Property<string>("pais")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Provincia")
+                    b.Property<string>("provincia")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TipoDocumento")
+                    b.Property<string>("telefono")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("tipoDni")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idUsuario");
 
                     b.ToTable("Usuario");
                 });

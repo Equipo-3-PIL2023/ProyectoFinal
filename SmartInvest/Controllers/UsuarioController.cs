@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.IIS.Core;
-using SmartInvest.Dtos;
+using SmartInvest.Dtos.UsuarioDto;
 using SmartInvest.Services;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SmartInvest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Usuario")]
     [ApiController]
-    public class UserController : Controller
+    public class UsuarioController : Controller
     {
-        private readonly UserService _userService;
-        public UserController(UserService userService)
+        private readonly UsuarioService _userService;
+        public UsuarioController(UsuarioService userService)
         {
             _userService = userService;
         }
@@ -26,8 +26,11 @@ namespace SmartInvest.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            UserDto result = await _userService.Get(id);
-            return new OkObjectResult(result);
+            //UserDto result = await _userService.Get(id);
+            //return new OkObjectResult(result);
+
+            UserDto usuario = await _userService.Get(id);
+            return usuario != null ? Ok(usuario) : null;
         }
 
         /*
@@ -41,8 +44,7 @@ namespace SmartInvest.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(NewUserDto clientDto)
         {
-            UserDto cliente = await _userService.Create(clientDto);
-            return CreatedAtAction(nameof(Get), new { id = cliente.Id }, cliente);
+            return Ok(await _userService.Create(clientDto));
         }
 
 

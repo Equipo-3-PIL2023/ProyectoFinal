@@ -1,17 +1,18 @@
-﻿using SmartInvest.Dtos;
+﻿using SmartInvest.Dtos.UsuarioDto;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartInvest.Models
 {
-    public class UserModel
+    public class UsuarioModel
     {
-        [Key] public int? idUsuario { get; set; }
+        [Key] public int idUsuario { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string correo { get; set; }
         public string password { get; set; }
         public int dni { get; set; }
         public string tipoDni { get; set; }
+        public string telefono { get; set; }
         public int codigoPostal { get; set; }
         public string ciudad { get; set; }
         public string provincia { get; set; }
@@ -22,13 +23,14 @@ namespace SmartInvest.Models
         {
             return new UserDto()
             {
-                Id = idUsuario ?? throw new Exception("El id no puede ser null"),
+                Id = idUsuario, 
                 Nombre = nombre,
                 Apellido = apellido,
                 Email = correo,
                 Password = password,
                 Dni = dni,
                 TipoDocumento = tipoDni,
+                Telefono = telefono,
                 CodigoPostal = codigoPostal,
                 Ciudad = ciudad,
                 Provincia = provincia,

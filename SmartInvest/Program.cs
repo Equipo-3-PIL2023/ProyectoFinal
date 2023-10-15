@@ -11,9 +11,9 @@ var configuration = new ConfigurationBuilder()
 
 var connectionString = configuration.GetConnectionString("connectionDB");
 
-builder.Services.AddDbContext<DataBaseContext>(builderContext =>
+builder.Services.AddDbContext<UsuarioDBContext>(builderContext =>
 builderContext.UseSqlServer(connectionString));
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<UsuarioService>();
 
 
 // Add services to the container.
@@ -24,7 +24,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
 
+    });
+});
 
 var app = builder.Build();
 
@@ -34,6 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors();
 
 app.UseHttpsRedirection();
 

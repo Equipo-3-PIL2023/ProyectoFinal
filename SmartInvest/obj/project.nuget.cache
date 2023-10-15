@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3TinO5Xs57FRUuRugT9vMocnd6pdCiDwy4rU7WC1PXQLs9iqPL/AaSP7qFlhYsPPXqvbWlLCj786AeoPx+FDnA==",
+  "dgSpecHash": "VI9OYgsyDDCxAtVSqul3eKYjMBuCXv/O2dhcUjSndfFereLhtZwkVySa9zHE74QAdM9J1Z1bXLLO+putFhirzw==",
   "success": true,
-  "projectFilePath": "D:\\Ignacio\\Ignacio\\ISPC\\Backend\\SmartInvest\\SmartInvest.csproj",
+  "projectFilePath": "D:\\Ignacio\\Ignacio\\ISPC\\Develops\\Angular_develop\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ignac\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Ignac\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -1,13 +1,13 @@
-﻿using SmartInvest.Dtos;
+﻿using SmartInvest.Dtos.UsuarioDto;
 using SmartInvest.Models;
 using SmartInvest.Repositories;
 
 namespace SmartInvest.Services
 {
-    public class UserService { 
+    public class UsuarioService { 
 
-    private readonly DataBaseContext _myDbContext;
-    public UserService(DataBaseContext myDBContext)
+    private readonly UsuarioDBContext _myDbContext;
+    public UsuarioService(UsuarioDBContext myDBContext)
     {
         _myDbContext = myDBContext;
     }
@@ -17,33 +17,33 @@ namespace SmartInvest.Services
     }
     public async Task<UserDto> Get(int id)
     {
-        UserModel result = await _myDbContext.Get(id);
+        UsuarioModel result = await _myDbContext.Get(id);
         return result.ToDto();
     }
-     /*
-    public async Task<bool> Delete(int id)
-    {
-        var result = await _myDbContext.Delete(id);
-        return result;
-    }*/
-    public async Task<UserDto> Create(NewUserDto userDto)
-    {
-        UserModel newClient = new UserModel()
+        /*
+       public async Task<bool> Delete(int id)
+       {
+           var result = await _myDbContext.Delete(id);
+           return result;
+       }*/
+        public async Task<UserDto> Create(NewUserDto userDto)
         {
-            idUsuario = null,
+            UsuarioModel newClient = new UsuarioModel{
             nombre = userDto.Nombre,
             apellido = userDto.Apellido,
             correo = userDto.Email,
             password = userDto.Password,
             dni = userDto.Dni,
             tipoDni = userDto.TipoDocumento,
+            telefono = userDto.Telefono,
             codigoPostal = userDto.CodigoPostal,
             ciudad = userDto.Ciudad,
+            provincia = userDto.Provincia,
             pais = userDto.Pais,
             fechaNacimiento = userDto.FechaNacimiento,
         };
 
-        UserModel entity = await _myDbContext.Create(newClient);
+        UsuarioModel entity = await _myDbContext.Create(newClient);
         return entity.ToDto();
     }
 
