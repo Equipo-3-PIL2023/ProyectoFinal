@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SmartInvest.Models;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace SmartInvest.Repositories
 {
@@ -27,6 +30,16 @@ namespace SmartInvest.Repositories
             EntityEntry<AccionModel> response = await Acciones.AddAsync(entity);
             await SaveChangesAsync();
             return await Get(response.Entity.idAccion);
+        }
+
+        public void Delete(int id)
+        {
+            AccionModel? accion = Acciones.FirstOrDefault(x => x.idAccion == id);
+            if (accion != null)
+            {
+                Acciones.Remove(accion);
+                SaveChanges();
+            }
         }
     }
 }

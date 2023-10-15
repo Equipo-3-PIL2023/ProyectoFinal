@@ -33,5 +33,10 @@ namespace SmartInvest.Services
             AccionModel entity = await _accionDbContext.Create(newAccion);
             return entity.ToDo();
         }
+
+        public void Delete(int id)
+        {
+            _accionDbContext.Delete(id);
+        }
     }
 }
