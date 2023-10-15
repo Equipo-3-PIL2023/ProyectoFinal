@@ -27,5 +27,15 @@ namespace SmartInvest.Repositories
             await SaveChangesAsync();
             return await Get(response.Entity.idCuenta);
         }
+
+        public void Delete(int id)
+        {
+            CuentaModel cuenta = Cuenta.FirstOrDefault(x => x.idCuenta == id);
+            if (cuenta != null)
+            {
+                Cuenta.Remove(cuenta);
+                SaveChanges();
+            }
+        }
     }
 }

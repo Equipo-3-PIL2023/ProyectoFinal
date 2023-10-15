@@ -34,5 +34,12 @@ namespace SmartInvest.Controllers
         {
             return Ok(await _cuentaService.Create(cuentaDto));
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            _cuentaService.Delete(id);
+            return Ok();
+        } 
     }
 }

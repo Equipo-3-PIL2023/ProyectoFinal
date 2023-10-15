@@ -27,5 +27,15 @@ namespace SmartInvest.Repositories
             await SaveChangesAsync();
             return await Get(response.Entity.idTransaccion);
         }
+
+        public void Delete(int id)
+        {
+            TransaccionModel transaccion = Transaccion.FirstOrDefault(x => x.idTransaccion == id);
+            if (transaccion != null)
+            {
+                Transaccion.Remove(transaccion);
+                SaveChanges();
+            }
+        }
     }       
 }

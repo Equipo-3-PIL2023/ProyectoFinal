@@ -26,25 +26,21 @@ namespace SmartInvest.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            //UserDto result = await _userService.Get(id);
-            //return new OkObjectResult(result);
-
             UsuarioDto usuario = await _userService.Get(id);
             return usuario != null ? Ok(usuario) : null;
         }
-
-        /*
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            return new OkObjectResult(await _userService.Delete(id));
-        }*/
-
 
         [HttpPost]
         public async Task<IActionResult> Create(NewUsuarioDto clientDto)
         {
             return Ok(await _userService.Create(clientDto));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            _userService.Delete(id);
+            return Ok();
         }
 
 

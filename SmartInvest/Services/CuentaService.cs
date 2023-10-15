@@ -35,5 +35,10 @@ namespace SmartInvest.Services
             CuentaModel entity = await _cuentaDbContext.Create(newCuenta);
             return entity.ToDo();
         }
+
+        public void Delete(int id)
+        {
+            _cuentaDbContext.Delete(id);
+        }
     }
 }

@@ -30,7 +30,16 @@ namespace SmartInvest.Repositories
             EntityEntry<UsuarioModel> response = await Usuario.AddAsync(entity);
             await SaveChangesAsync();
             return await Get(response.Entity.idUsuario);
+        }
 
+        public void Delete(int id)
+        {
+            UsuarioModel usuario = Usuario.FirstOrDefault(x => x.idUsuario == id);
+            if (usuario != null)
+            {
+                Usuario.Remove(usuario);
+                SaveChanges();
+            }
         }
 
     }

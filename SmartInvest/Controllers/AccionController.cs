@@ -38,9 +38,10 @@ namespace SmartInvest.Controllers
         }
 
         [HttpDelete]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             _accionService.Delete(id);
+            return Ok();
         }
     }
 }
