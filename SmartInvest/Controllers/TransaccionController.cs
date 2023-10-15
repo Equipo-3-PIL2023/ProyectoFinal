@@ -21,5 +21,18 @@ namespace SmartInvest.Controllers
             List<TransaccionDto> result = await _transaccionService.Get();
             return new ObjectResult(result);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            TransaccionDto result = await _transaccionService.Get(id);
+            return result != null ? Ok(result) : null;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(NewTransaccionDto transaccionDto)
+        {
+            return Ok(await _transaccionService.Create(transaccionDto));
+        }
     }
 }

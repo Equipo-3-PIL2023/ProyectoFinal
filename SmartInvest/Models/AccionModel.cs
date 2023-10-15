@@ -13,6 +13,7 @@ namespace SmartInvest.Models
         {
             return new AccionDto()
             {
+                idAccion = idAccion,
                 nombre = nombre,
                 simbolo = simbolo
             };
