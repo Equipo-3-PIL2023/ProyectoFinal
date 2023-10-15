@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SmartInvest.Models
+﻿namespace SmartInvest.Dtos.TransaccionDto
 {
-    public class TransaccionModel
+    public class TransaccionDto
     {
-        [Key] public int idTransaccion {  get; set; }
+        public int idTransaccion { get; set; }
         public int idAcciones { get; set; }
         public int idCuenta { get; set; }
         public DateTime fecha { get; set; }

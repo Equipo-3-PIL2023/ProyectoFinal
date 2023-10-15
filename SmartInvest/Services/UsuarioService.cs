@@ -6,27 +6,27 @@ namespace SmartInvest.Services
 {
     public class UsuarioService { 
 
-    private readonly UsuarioDBContext _myDbContext;
+    private readonly UsuarioDBContext _usuarioDbContext;
     public UsuarioService(UsuarioDBContext myDBContext)
     {
-        _myDbContext = myDBContext;
+        _usuarioDbContext = myDBContext;
     }
-    public async Task<List<UserDto>> Get()
+    public async Task<List<UsuarioDto>> Get()
     {
-        return _myDbContext.Get().Result.Select(c => c.ToDto()).ToList();
+        return _usuarioDbContext.Get().Result.Select(c => c.ToDto()).ToList();
     }
-    public async Task<UserDto> Get(int id)
+    public async Task<UsuarioDto> Get(int id)
     {
-        UsuarioModel result = await _myDbContext.Get(id);
+        UsuarioModel result = await _usuarioDbContext.Get(id);
         return result.ToDto();
     }
         /*
        public async Task<bool> Delete(int id)
        {
-           var result = await _myDbContext.Delete(id);
+           var result = await _usuarioDbContext.Delete(id);
            return result;
        }*/
-        public async Task<UserDto> Create(NewUserDto userDto)
+        public async Task<UsuarioDto> Create(NewUsuarioDto userDto)
         {
             UsuarioModel newClient = new UsuarioModel{
             nombre = userDto.Nombre,
@@ -43,14 +43,14 @@ namespace SmartInvest.Services
             fechaNacimiento = userDto.FechaNacimiento,
         };
 
-        UsuarioModel entity = await _myDbContext.Create(newClient);
+        UsuarioModel entity = await _usuarioDbContext.Create(newClient);
         return entity.ToDto();
     }
 
     /*
     public async Task<UserDto> Update(UserDto user)
     {
-        var entity = await _myDbContext.Get(user.Id);
+        var entity = await _usuarioDbContext.Get(user.Id);
         if (entity == null)
         {
             return null;
@@ -66,7 +66,7 @@ namespace SmartInvest.Services
             entity.Provincia = user.Provincia;
             entity.Pais = user.Pais;
             entity.FechaNacimiento = user.FechaNacimiento;
-            await _myDbContext.Update(entity);
+            await _usuarioDbContext.Update(entity);
         return entity.ToDto();
     }
     */

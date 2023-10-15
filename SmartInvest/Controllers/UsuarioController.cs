@@ -19,7 +19,7 @@ namespace SmartInvest.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            List<UserDto> result = await _userService.Get();
+            List<UsuarioDto> result = await _userService.Get();
             return new OkObjectResult(result);
         }
         //api/usuario/{id}
@@ -29,7 +29,7 @@ namespace SmartInvest.Controllers
             //UserDto result = await _userService.Get(id);
             //return new OkObjectResult(result);
 
-            UserDto usuario = await _userService.Get(id);
+            UsuarioDto usuario = await _userService.Get(id);
             return usuario != null ? Ok(usuario) : null;
         }
 
@@ -42,7 +42,7 @@ namespace SmartInvest.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(NewUserDto clientDto)
+        public async Task<IActionResult> Create(NewUsuarioDto clientDto)
         {
             return Ok(await _userService.Create(clientDto));
         }

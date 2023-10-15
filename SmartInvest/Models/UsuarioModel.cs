@@ -19,9 +19,9 @@ namespace SmartInvest.Models
         public string pais { get; set; }
         public DateTime fechaNacimiento { get; set; }
 
-        public UserDto ToDto()
+        public UsuarioDto ToDto()
         {
-            return new UserDto()
+            return new UsuarioDto()
             {
                 Id = idUsuario, 
                 Nombre = nombre,

@@ -15,6 +15,18 @@ builder.Services.AddDbContext<UsuarioDBContext>(builderContext =>
 builderContext.UseSqlServer(connectionString));
 builder.Services.AddScoped<UsuarioService>();
 
+builder.Services.AddDbContext<AccionDBContext>(builderContext =>
+builderContext.UseSqlServer(connectionString));
+builder.Services.AddScoped<AccionService>();
+
+builder.Services.AddDbContext<TransaccionDBContext>(builderContext =>
+builderContext.UseSqlServer(connectionString));
+builder.Services.AddScoped<TransaccionService>();
+
+builder.Services.AddDbContext<CuentaDBContext>(builderContext =>
+builderContext.UseSqlServer(connectionString));
+builder.Services.AddScoped<CuentaService>();
+
 
 // Add services to the container.
 builder.Services.AddControllers();
