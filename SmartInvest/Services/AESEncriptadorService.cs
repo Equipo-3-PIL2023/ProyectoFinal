@@ -8,14 +8,21 @@ namespace SmartInvest.Services
     {
         private const int TamanioClave = 32; // Tamaño de la clave en bytes (256 bits).
         private const int TamanioIV = 16; // Tamaño del vector de inicialización en bytes (128 bits).
-        private readonly string key = "GWhQi2rFbDeC8uuiHgueSunKdf";
+        private readonly string key = "GWhQi2rFbDeC8uuiHgueSunKdfvkj";
+        private readonly byte[] iv;
+
+        public AESEncriptadorService()
+        {
+            // Genera el IV una vez durante la inicialización del servicio.
+            iv = Encoding.UTF8.GetBytes("13abf09c6bea2f91");
+        }
 
         public string Encriptar(string textoPlano)
         {
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Encoding.UTF8.GetBytes(key.PadRight(TamanioClave));
-                aesAlg.IV = GenerarIV();
+                aesAlg.IV = iv; // Usa el mismo IV para el cifrado y el descifrado.
 
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
@@ -38,7 +45,7 @@ namespace SmartInvest.Services
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Encoding.UTF8.GetBytes(key.PadRight(TamanioClave));
-                aesAlg.IV = GenerarIV();
+                aesAlg.IV = iv; // Usa el mismo IV para el cifrado y el descifrado.
 
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
@@ -55,13 +62,13 @@ namespace SmartInvest.Services
             }
         }
 
-        private byte[] GenerarIV()
+        /*private byte[] GenerarIV()
         {
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.GenerateIV();
                 return aesAlg.IV;
             }
-        }
+        }*/
     }
 }

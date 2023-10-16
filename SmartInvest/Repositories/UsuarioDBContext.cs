@@ -20,6 +20,11 @@ namespace SmartInvest.Repositories
             return await Usuario.FirstAsync(x => x.idUsuario == id);
         }
 
+        public async Task<UsuarioModel> Login(string correo, string password)
+        {
+            return await Usuario.FirstAsync(x => x.correo == correo && x.password == password);
+        } 
+
         public async Task<List<UsuarioModel>> Get()
         {
             return await Usuario.ToListAsync();
