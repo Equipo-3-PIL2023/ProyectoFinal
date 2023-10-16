@@ -27,7 +27,6 @@ namespace SmartInvest.Models
                 Nombre = nombre,
                 Apellido = apellido,
                 Email = correo,
-                Password = password,
                 Dni = dni,
                 TipoDocumento = tipoDni,
                 Telefono = telefono,

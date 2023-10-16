@@ -9,6 +9,8 @@ var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
 
+string aesKey = configuration.GetSection("AppSettings:AESKey").Value;
+
 var connectionString = configuration.GetConnectionString("connectionDB");
 
 builder.Services.AddDbContext<UsuarioDBContext>(builderContext =>
@@ -26,6 +28,7 @@ builder.Services.AddScoped<TransaccionService>();
 builder.Services.AddDbContext<CuentaDBContext>(builderContext =>
 builderContext.UseSqlServer(connectionString));
 builder.Services.AddScoped<CuentaService>();
+builder.Services.AddScoped<AESEncriptadorService>();
 
 
 // Add services to the container.

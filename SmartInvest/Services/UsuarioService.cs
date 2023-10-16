@@ -8,9 +8,11 @@ namespace SmartInvest.Services
     {
 
         private readonly UsuarioDBContext _usuarioDbContext;
-        public UsuarioService(UsuarioDBContext myDBContext)
+        private readonly AESEncriptadorService _AESEncriptadorService;
+        public UsuarioService(UsuarioDBContext myDBContext, AESEncriptadorService aESEncriptadorService)
         {
             _usuarioDbContext = myDBContext;
+            _AESEncriptadorService = aESEncriptadorService;
         }
         public async Task<List<UsuarioDto>> Get()
         {
@@ -24,12 +26,15 @@ namespace SmartInvest.Services
 
         public async Task<UsuarioDto> Create(NewUsuarioDto userDto)
         {
+            
+            string password = _AESEncriptadorService.Encriptar(userDto.Password);
+
             UsuarioModel newClient = new UsuarioModel
             {
                 nombre = userDto.Nombre,
                 apellido = userDto.Apellido,
                 correo = userDto.Email,
-                password = userDto.Password,
+                password = password,
                 dni = userDto.Dni,
                 tipoDni = userDto.TipoDocumento,
                 telefono = userDto.Telefono,
