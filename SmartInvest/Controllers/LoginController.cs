@@ -8,16 +8,16 @@ namespace SmartInvest.Controllers
     [ApiController]
     public class LoginController : Controller
     {
-        private readonly UsuarioService _usuarioService;
-        public LoginController(UsuarioService suarioService)
+        private readonly LoginService _loginService;
+        public LoginController(LoginService loginService)
         {
-            _usuarioService = suarioService;
+            _loginService = loginService;
         }
 
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            UsuarioDto usuario = await _usuarioService.Login(loginDto.correo, loginDto.password);
+            UsuarioDto usuario = await _loginService.Login(loginDto.email, loginDto.password);
             return usuario != null ? Ok(true) : null;
         }
     }

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  url: string = "https://reqres.in/api/login";
+  url: string = "https://localhost:44342/api/login";
   urlPortafolio:string = "https://my-json-server.typicode.com/MaximoGalindo/users/portafolio"
   userLoginOn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 

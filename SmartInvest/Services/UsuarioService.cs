@@ -54,14 +54,6 @@ namespace SmartInvest.Services
             _usuarioDbContext.Delete(id);
         }
 
-        public async Task<UsuarioDto> Login(string correo, string password)
-        {
-            string primera = _AESEncriptadorService.Encriptar(password);
-            password = _AESEncriptadorService.Encriptar(password);
-
-            UsuarioModel result = await _usuarioDbContext.Login(correo, password);
-            return result.ToDto();
-        }
 
         /*
         public async Task<UserDto> Update(UserDto user)

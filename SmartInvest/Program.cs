@@ -29,6 +29,8 @@ builder.Services.AddDbContext<CuentaDBContext>(builderContext =>
 builderContext.UseSqlServer(connectionString));
 builder.Services.AddScoped<CuentaService>();
 builder.Services.AddScoped<AESEncriptadorService>();
+builder.Services.AddScoped<LoginService>();
+
 
 
 // Add services to the container.
