@@ -1,22 +1,22 @@
 <section class="col-sm-12 col-md-12 col-lg-12 mx-auto fondo">
   <div id="login" class="animated fadeIn mb-3 mt-3">
     <h1 class="text-center mt-1 letras">Registrarse</h1>
-    <form [formGroup]="registerForm" (submit)="login()">
+    <form [formGroup]="registerForm" (submit)="saveUsuario()">
       <div class="row">
         <div class="col-6 my-1">
           <label class="form-label letras">Nombre</label>
-          <input class="form-control" formControlName="name" id="inputName" />
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="name.errors?.['required']">
+          <input class="form-control" formControlName="nombre" id="inputNombre" />
+          <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="nombre.errors?.['required']">
               El nombre es requerido
           </div>
           </div>
         </div>
         <div class="col-6 my-1">
           <label class="form-label letras">Apellido</label>
-          <input class="form-control" formControlName="lastname" id="inputLastname" />
-          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="lastname.errors?.['required']">
+          <input class="form-control" formControlName="apellido" id="inputApellido" />
+          <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="apellido.errors?.['required']">
               El apellido es requerido
           </div>
           </div>
@@ -41,66 +41,76 @@
         </div>
         <div class="col-4 my-1">
           <label class="form-label letras">Año</label>
-          <input class="form-control" formControlName="age" type="number" id="inputAge" />
-          <div *ngIf="age.invalid && (age.dirty || age.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="age.errors?.['required']">
+          <input class="form-control" formControlName="year" type="number" id="inputYear" />
+          <div *ngIf="year.invalid && (year.dirty || year.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="year.errors?.['required']">
               El año es requerido
           </div>
           </div>
         </div>
         <div class="col-6 my-1">
           <label class="form-label letras">Tipo de documento</label>
-          <input class="form-control" formControlName="type_document" id="inputTypedocument" />
-          <div *ngIf="type_document.invalid && (type_document.dirty || type_document.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="type_document.errors?.['required']">
+          <input ngModel="DNI" [disabled]="true" class="form-control" formControlName="tipoDocumento" id="inputTipoDocumento" />
+          <div *ngIf="tipoDocumento.invalid && (tipoDocumento.dirty || tipoDocumento.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="tipoDocumento.errors?.['required']">
               El tipo de documento es requerido
           </div>
           </div>
         </div>
         <div class="col-6 my-1">
           <label class="form-label letras">N° D.N.I</label>
-          <input class="form-control"  formControlName="number_document" type="number" id="inputNumberdocument" />
-          <div *ngIf="number_document.invalid && (number_document.dirty || number_document.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="number_document.errors?.['required']">
+          <input class="form-control"  formControlName="dni" type="number" id="inputDni" />
+          <div *ngIf="dni.invalid && (dni.dirty || dni.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="dni.errors?.['required']">
               El numero del documento es requerido
           </div>
           </div>
         </div>
         <div class="col-3 my-1">
           <label class="form-label letras">País</label>
-          <input class="form-control"  formControlName="country" id="inputCountry" />
-          <div *ngIf="country.invalid && (country.dirty || country.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="country.errors?.['required']">
+          <input class="form-control"  formControlName="pais" id="inputPais" />
+          <div *ngIf="pais.invalid && (pais.dirty || pais.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="pais.errors?.['required']">
               El país es requerido
           </div>
           </div>
         </div>
         <div class="col-3 my-1">
           <label class="form-label letras">Provincia</label>
-          <input class="form-control"  formControlName="state" id="inputState" />
-          <div *ngIf="state.invalid && (state.dirty || state.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="state.errors?.['required']">
+          <input class="form-control"  formControlName="provincia" id="inputProvincia" />
+          <div *ngIf="provincia.invalid && (provincia.dirty || provincia.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="provincia.errors?.['required']">
               La provincia es requerida
           </div>
           </div>
         </div>
         <div class="col-3 my-1">
           <label class="form-label letras">Ciudad</label>
-          <input class="form-control"  formControlName="city" id="inputCity" />
-          <div *ngIf="city.invalid && (city.dirty || city.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="city.errors?.['required']">
+          <input class="form-control"  formControlName="ciudad" id="inputCiudad" />
+          <div *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="ciudad.errors?.['required']">
               La ciudad es requerida
           </div>
           </div>
         </div>
         <div class="col-3 my-1">
           <label class="form-label letras">Código Postal</label>
-          <input class="form-control"  formControlName="zip_code" id="inputZipcode" />
-          <div *ngIf="zip_code.invalid && (zip_code.dirty || zip_code.touched)" class="text-danger mb-0 mt-1">
-            <div *ngIf="zip_code.errors?.['required']">
+          <input class="form-control"  formControlName="codigoPostal" id="inputCodigoPostal" />
+          <div *ngIf="codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched)" class="text-danger mb-0 mt-1">
+            <div *ngIf="codigoPostal.errors?.['required']">
               El código postal es requerido
           </div>
           </div>
+        </div>
+        <div class="col-12 my-1">
+          <label class="form-label letras">Teléfono</label>
+          <input class="form-control" formControlName="telefono" type="" id="inputTelefono"/>
+          <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+                class="text-danger mb-0 mt-1">
+                <div *ngIf="telefono.errors?.['required']">
+                    El teléfono es requerido
+                </div>
+            </div>
         </div>
         <div class="col-12 my-1">
           <label class="form-label letras">Email</label>
@@ -117,7 +127,7 @@
         </div>
         <div class="col-6 my-1">
           <label class="form-label letras mt-1">Contraseña</label>
-          <input class="form-control" formControlName="password" type="password" id="inputPassword" />
+          <input (input)="passwordMatch()" class="form-control" formControlName="password" type="password" id="inputPassword" />
           <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="text-danger mb-0 mt-1">
             <div *ngIf="password.errors?.['required']">
               <div *ngIf="password.errors?.['required']">
@@ -128,10 +138,11 @@
         </div>
         <div class="col-6 my-1">
           <label class="form-label letras mt-1">Confirmar Contraseña</label>
-          <input class="form-control"  formControlName="confirm_password" type="password" id="inputPasswordrepeat" />
-          <div *ngIf="confirm_password.invalid && (confirm_password.dirty || confirm_password.touched)"  class="text-danger mb-0 mt-1">
-            <div *ngIf="confirm_password.errors?.['required']">
-              <div *ngIf="confirm_password.errors?.['required']">
+          <input (input)="passwordMatch()" class="form-control"  formControlName="confirmPassword" type="password" id="inputPasswordrepeat" />
+          <div *ngIf="this.passwordBoolean || confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"  class="text-danger mb-0 mt-1">
+            <div *ngIf="confirmPassword.errors?.['required'] || this.passwordBoolean">
+              
+              <div *ngIf="confirmPassword.errors?.['required'] || this.passwordBoolean">
                 La contraseña debe ser igual
             </div>
           </div>
@@ -145,14 +156,14 @@
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+            <input (change)="changeValueAcceptTerms()" class="form-check-input" type="checkbox" value='' id="flexCheckDefault" />
             <label class="form-check-label" for="flexCheckDefault">
               Acepto los terminos de condiciones de uso.
             </label>
           </div>
         </div>
         <div class="col-12 mt-2 text-center">
-          <button type="submit"  class="btn btn-primary btn-block" [disabled]="!registerForm.valid">
+          <button type="submit"  class="btn btn-primary btn-block" [disabled]="(this.passwordBoolean || !registerForm.valid || !aceptaTerminos)">
             Registrarme
           </button>
         </div>
