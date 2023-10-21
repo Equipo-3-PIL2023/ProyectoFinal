@@ -1,108 +1,178 @@
-   
-    <main id="comprarAcciones" >
-        <section class="container">
-            <div class="row">
-                <h1 class="text-start p-3">Comprar acciones</h1>
-            </div>
-    
-            <form class="p-3 section-bg " action="" [formGroup]="compraForm">
-    
-                <div class="row p-2">
-                    <div class="col-md-6">
-                        Mercado
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-control" formControlName="mercado">
-                            <option>Argentina</option> 
-                        </select>
-                        <!-- Mensaje de error de campo requerido -->
-                        <div
-                        *ngIf="compraForm.get('mercado')?.invalid && (compraForm.get('mercado')?.dirty || compraForm.get('mercado')?.touched)"
-                            class="text-danger"
-                        >
-                            Para realizar la compra este campo es requerido.
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row p-2">
-                    <div class="col-md-6">
-                        Símbolo
-                    </div>
-                    <div class="col-md-6">
-                        <select formControlName="simbolo" #drop (change)="getBySimbolo(drop.value)" (change)="calcularTotal(cantidad.value)" id="dropdownSimbolo" class="form-control">
-                            <option *ngFor="let item of listSimbolos" >{{item.simbolo}}</option>
-                        </select>
-                        <!-- Mensaje de error de campo requerido -->
-                        <div
-                        *ngIf="compraForm.get('simbolo')?.invalid && (compraForm.get('simbolo')?.dirty || compraForm.get('simbolo')?.touched)"
-                            class="text-danger"
-                        >
-                            Para realizar la compra este campo es requerido.
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row p-2">
-                    <div class="col-md-6">
-                        Precio actual
-                    </div>
-                    <div class="col-md-6">
-                        <span class="badge bg-primary">$ARS {{precioAccion}}</span>
-                    </div>
-                </div>
-    
-                <div class="row p-2">
-                    <div class="col-md-6">
-                        Cantidad
-                    </div>
-                    <div class="col-md-6">
-                        <div class="input-group flex-nowrap">                        
-                            <input formControlName="cantidad" #cantidad type="number" min="1" class="form-control" value="1" (keyup)="calcularTotal(cantidad.value)" (click)="calcularTotal(cantidad.value)" placeholder="Ejemplo: 120" aria-label="Username" aria-describedby="addon-wrapping">
-                            <!-- Mensaje de error de campo requerido -->
-                        </div>
-                        <div
-                        *ngIf="compraForm.get('cantidad')?.invalid && (compraForm.get('cantidad')?.dirty || compraForm.get('cantidad')?.touched)"
-                            class="text-danger"
-                        >
-                            Para realizar la compra este campo es requerido.
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row p-2">
-                    <div class="col-md-6">
-                        Modalidad
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked
-                                disabled>
-                            <label class="form-check-label" for="flexCheckCheckedDisabled">
-                                Precio de mercado
-                            </label>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row p-2">
-                    <div class="col-md-6">
-                        Precio total
-                    </div>
-                    <div class="col-md-6">
-                        <span class="badge bg-primary">$ARS {{precioTotal}}</span>
-                    </div>
-                </div>
-    
-                <div class="row p-2 mt-3">
-                    <div class="col-md-6 p-1">
-                        <button type="button" class="btn btn-primary" routerLink="/cotizaciones">Ir a cotizaciones</button>
-                    </div>
-                    <div class="col-md-6 p-1">
-                        <button type="button" class="btn btn-bd-primary" [disabled]="!compraForm.valid">Comprar acciones</button>
-                    </div>
-                </div>
-    
-            </form>
-        </section>
-    </main>
+<main id="comprarAcciones">
+  <section class="container">
+    <div class="row">
+      <h1 class="text-start p-3">Comprar acciones</h1>
+    </div>
+
+    <form class="p-3 section-bg" action="" [formGroup]="compraForm">
+      <div class="row p-2">
+        <div class="col-md-6">Mercado</div>
+        <div class="col-md-6">
+          <select class="form-control" formControlName="mercado">
+            <option>Argentina</option>
+          </select>
+          <!-- Mensaje de error de campo requerido -->
+          <div
+            *ngIf="
+              compraForm.get('mercado')?.invalid &&
+              (compraForm.get('mercado')?.dirty ||
+                compraForm.get('mercado')?.touched)
+            "
+            class="text-danger"
+          >
+            Para realizar la compra este campo es requerido.
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-md-6">Símbolo</div>
+        <div class="col-md-6">
+          <select
+            formControlName="simbolo"          
+            #drop
+            (change)="getBySimbolo(drop.value)"
+            (change)="calcularTotal(cantidad.value)"
+            id="dropdownSimbolo"
+            class="form-control"            
+          >
+            <option id="optionDrop" *ngFor="let item of listSimbolos" [selected]="item.simbolo === symbolDrop">
+              {{ item.simbolo }}
+            </option>
+          </select>
+          <!-- Mensaje de error de campo requerido -->
+          <div
+            *ngIf="            
+              compraForm.get('simbolo')?.invalid &&
+              (compraForm.get('simbolo')?.dirty ||
+                compraForm.get('simbolo')?.touched)
+            "
+            class="text-danger"
+          >
+            Para realizar la compra este campo es requerido.
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-md-6">Precio actual</div>
+        <div class="col-md-6">
+          <span class="badge bg-primary">$ARS {{ precioAccion }}</span>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-md-6">Cantidad</div>
+        <div class="col-md-6">
+          <div class="input-group flex-nowrap">
+            <input
+              formControlName="cantidad"
+              #cantidad
+              type="number"
+              min="1"
+              class="form-control"
+              value="1"
+              (keyup)="calcularTotal(cantidad.value)"
+              (click)="calcularTotal(cantidad.value)"
+              placeholder="Ejemplo: 120"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+            />
+            <!-- Mensaje de error de campo requerido -->
+          </div>
+          <div
+            *ngIf="
+              compraForm.get('cantidad')?.invalid &&
+              (compraForm.get('cantidad')?.dirty ||
+                compraForm.get('cantidad')?.touched)
+            "
+            class="text-danger"
+          >
+            Para realizar la compra este campo es requerido.
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-md-6">Modalidad</div>
+        <div class="col-md-6">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckCheckedDisabled"
+              checked
+              disabled
+            />
+            <label class="form-check-label" for="flexCheckCheckedDisabled">
+              Precio de mercado
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-md-6">Precio total</div>
+        <div class="col-md-6">
+          <span class="badge bg-primary">$ARS {{ precioTotal }}</span>
+        </div>
+      </div>
+
+      <div class="row p-2 mt-3">
+        <div class="col-md-6 p-1">
+          <button
+            type="button"
+            class="btn btn-primary"
+            routerLink="/cotizaciones"
+          >
+            Ir a cotizaciones
+          </button>
+        </div>
+        <div class="col-md-6 p-1">
+          <button
+            type="button"
+            class="btn btn-bd-primary"
+            [disabled]="!compraForm.valid"
+            data-bs-toggle="modal"
+            data-bs-target="#confirmModal"
+          >
+            Comprar acciones
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="confirmModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">¿Estás seguro de realizar tu compra?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar compra
+        </button>
+        <button type="button" class="btn btn-bd-primary" (click)="comprarAcciones()">Si, quiero comprar</button>
+      </div>
+    </div>
+  </div>
+</div>

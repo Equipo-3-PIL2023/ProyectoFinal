@@ -1,5 +1,5 @@
 .head {
-    display: flex;
+    position: relative;
     width: 100%;
     justify-content: space-evenly;
     gap: 1em;
