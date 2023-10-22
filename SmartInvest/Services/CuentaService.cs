@@ -25,6 +25,12 @@ namespace SmartInvest.Services
             return result.ToDo();
         }
 
+        public async Task<CuentaDto> GetCuentaByUser(int userId)
+        {
+            CuentaModel result = await _cuentaDbContext.GetCuentaByUserId(userId);
+            return result.ToDo();
+        }
+
         public async Task<CuentaDto> Create(NewCuentaDto cuentaDto)
         {
             CuentaModel newCuenta = new CuentaModel
@@ -34,6 +40,15 @@ namespace SmartInvest.Services
             };
             CuentaModel entity = await _cuentaDbContext.Create(newCuenta);
             return entity.ToDo();
+        }
+
+        public async Task<CuentaModel> ActualizarSaldo(CuentaSaldoDTO cuentaDto)
+        {
+            CuentaModel cuenta = await _cuentaDbContext.Get(cuentaDto.idCuenta);            
+            cuenta.saldo = cuentaDto.saldo - cuentaDto.TotalInvertido;
+            await _cuentaDbContext.ActualizarSaldo(cuenta);   
+            return cuenta;
+
         }
 
         public void Delete(int id)

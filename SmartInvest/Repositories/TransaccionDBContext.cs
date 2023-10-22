@@ -21,6 +21,14 @@ namespace SmartInvest.Repositories
             return await Transaccion.FirstAsync(x => x.idTransaccion == id);
         }
 
+        public async Task<List<TransaccionModel>> GetTransaccionByCuenta(int idCuenta)
+        {
+            return await Transaccion
+                .Where(x => x.idCuenta == idCuenta)
+                .ToListAsync();
+        }
+
+
         public async Task<TransaccionModel> Create(TransaccionModel entity)
         {
             EntityEntry<TransaccionModel> response = await Transaccion.AddAsync(entity);

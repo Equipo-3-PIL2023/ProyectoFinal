@@ -29,6 +29,13 @@ namespace SmartInvest.Controllers
             return result != null ? Ok(result) : null;
         }
 
+        [HttpGet("cuenta/{idCuenta}")]
+        public async Task<IActionResult> GetTransaccionesByCuenta(int idCuenta)
+        {
+            List<TransaccionDto> result = await _transaccionService.GetTransaccionesByCuenta(idCuenta);
+            return result != null ? Ok(result) : null;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(NewTransaccionDto transaccionDto)
         {

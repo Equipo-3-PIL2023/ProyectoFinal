@@ -29,10 +29,25 @@ namespace SmartInvest.Controllers
             return result != null ? Ok(result) : null;
         }
 
+
+        [HttpGet("/User/{userId}")]
+        public async Task<IActionResult> GetCuentaById(int userId)
+        {
+            CuentaDto result = await _cuentaService.GetCuentaByUser(userId);
+            return result != null ? Ok(result) : null;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(NewCuentaDto cuentaDto)
         {
             return Ok(await _cuentaService.Create(cuentaDto));
+        }
+
+
+        [HttpPut("/actualizar")]
+        public async Task<IActionResult> ActualizarSaldo(CuentaSaldoDTO cuentaDto)
+        {
+            return Ok(await _cuentaService.ActualizarSaldo(cuentaDto));
         }
 
         [HttpDelete]
