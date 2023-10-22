@@ -1,6 +1,9 @@
-﻿using SmartInvest.Dtos.UsuarioDto;
+﻿using Azure;
+using SmartInvest.Dtos.CuentaDto;
+using SmartInvest.Dtos.UsuarioDto;
 using SmartInvest.Models;
 using SmartInvest.Repositories;
+using System.Security.Cryptography;
 
 namespace SmartInvest.Services
 {
@@ -8,11 +11,13 @@ namespace SmartInvest.Services
     {
 
         private readonly UsuarioDBContext _usuarioDbContext;
+        private readonly CuentaDBContext _cuentaDbContext;
         private readonly AESEncriptadorService _AESEncriptadorService;
-        public UsuarioService(UsuarioDBContext myDBContext, AESEncriptadorService aESEncriptadorService)
+        public UsuarioService(UsuarioDBContext myDBContext, CuentaDBContext cuentaDBContext ,AESEncriptadorService aESEncriptadorService)
         {
             _usuarioDbContext = myDBContext;
             _AESEncriptadorService = aESEncriptadorService;
+            _cuentaDbContext = cuentaDBContext;
         }
         public async Task<List<UsuarioDto>> Get()
         {
@@ -28,6 +33,8 @@ namespace SmartInvest.Services
         {
             
             string password = _AESEncriptadorService.Encriptar(userDto.Password);
+            DateTime fechaNacimiento = new DateTime(userDto.Year, userDto.Month, userDto.Day);
+
 
             UsuarioModel newClient = new UsuarioModel
             {
@@ -42,10 +49,19 @@ namespace SmartInvest.Services
                 ciudad = userDto.Ciudad,
                 provincia = userDto.Provincia,
                 pais = userDto.Pais,
-                fechaNacimiento = userDto.FechaNacimiento,
+                fechaNacimiento = fechaNacimiento,
             };
 
             UsuarioModel entity = await _usuarioDbContext.Create(newClient);
+
+            CuentaModel newCuenta = new CuentaModel
+            {
+                idUsuario = entity.idUsuario,
+                saldo = 1000000
+            };
+
+            CuentaModel cuenta = await _cuentaDbContext.Create(newCuenta);
+
             return entity.ToDto();
         }
 
