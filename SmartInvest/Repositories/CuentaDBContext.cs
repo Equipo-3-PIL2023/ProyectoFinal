@@ -21,9 +21,21 @@ namespace SmartInvest.Repositories
             return await Cuenta.FirstAsync(x => x.idCuenta == id);
         }
 
+        public async Task<CuentaModel> GetCuentaByUserId(int userId)
+        {
+            return await Cuenta.FirstAsync(c => c.idUsuario == userId);
+        }
+
         public async Task<CuentaModel> Create(CuentaModel entity)
         {
             EntityEntry<CuentaModel> response = await Cuenta.AddAsync(entity);
+            await SaveChangesAsync();
+            return await Get(response.Entity.idCuenta);
+        }
+
+        public async Task<CuentaModel> ActualizarSaldo(CuentaModel entity)
+        {
+            EntityEntry<CuentaModel> response = Cuenta.Update(entity);
             await SaveChangesAsync();
             return await Get(response.Entity.idCuenta);
         }

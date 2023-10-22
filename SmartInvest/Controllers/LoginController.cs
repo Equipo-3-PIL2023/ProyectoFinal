@@ -18,7 +18,7 @@ namespace SmartInvest.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             UsuarioDto usuario = await _loginService.Login(loginDto.email, loginDto.password);
-            return usuario != null ? Ok(true) : null;
+            return usuario != null ? Ok(usuario.Id) : null;
         }
     }
 }
