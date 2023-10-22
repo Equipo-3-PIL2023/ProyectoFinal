@@ -53,7 +53,7 @@ export class PortafolioComponent implements OnInit {
             nuevaAccion.cantidad = accion.cantidad;
             nuevaAccion.valor = cotizacion.puntas.precioVenta * accion.cantidad;
             
-            this.totalInvertido = accion.cantidad * cotizacion.puntas.precioVenta
+            this.totalInvertido += accion.cantidad * cotizacion.puntas.precioVenta
             cuenta.totalInvertido = this.totalInvertido
             const valorVenta = cotizacion.puntas.precioVenta * accion.cantidad;     
             const ultimoValor = cotizacion.ultimoPrecio * accion.cantidad;
