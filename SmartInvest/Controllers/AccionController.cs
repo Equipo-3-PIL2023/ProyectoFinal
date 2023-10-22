@@ -43,5 +43,29 @@ namespace SmartInvest.Controllers
             _accionService.Delete(id);
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, NewAccionDto accionDto)
+        {
+            AccionDto existingAccion = await _accionService.Get(id);
+
+            if (existingAccion == null)
+            {
+                return NotFound();
+            }
+
+            AccionDto updatedAccion = new AccionDto
+            {
+                idAccion = id,
+                nombre = accionDto.nombre,
+                simbolo = accionDto.simbolo,
+            };
+
+            AccionDto result = await _accionService.Update(id, updatedAccion);
+
+            return Ok(result);
+
+        }
+
     }
 }
