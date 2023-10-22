@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using SmartInvest.Dtos.PortafolioDTO;
 using SmartInvest.Repositories;
 using SmartInvest.Services;
 
@@ -30,6 +31,8 @@ builderContext.UseSqlServer(connectionString));
 builder.Services.AddScoped<CuentaService>();
 builder.Services.AddScoped<AESEncriptadorService>();
 builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<PortafolioService>();
+
 
 
 

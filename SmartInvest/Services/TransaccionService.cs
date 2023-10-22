@@ -18,6 +18,11 @@ namespace SmartInvest.Services
             return _transaccionDbContext.Get().Result.Select(c => c.ToDo()).ToList();
         }
 
+        public async Task<List<TransaccionDto>> GetTransaccionesByCuenta(int idCuenta)
+        {
+            return _transaccionDbContext.GetTransaccionByCuenta(idCuenta).Result.Select( c => c.ToDo()).ToList();
+        }
+
         public async Task<TransaccionDto> Get(int id)
         {
             TransaccionModel result = await _transaccionDbContext.Get(id);
