@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Accion, ComprarAccionesService } from 'src/app/services/comprar-acciones.service';
+import { ComprarAccionesService } from 'src/app/services/comprar-acciones.service';
 import { ComprarAccionesComponent } from '../comprarAcciones/comprarAcciones.component';
+import { Accion } from 'src/app/services/Accion';
 
 @Component({
   selector: 'app-tablaCotizaciones',

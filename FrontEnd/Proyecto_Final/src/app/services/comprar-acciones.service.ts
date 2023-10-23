@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CompraDto } from '../Dtos/TransaccionDtos/CompraDto';
+import { Accion } from './Accion';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,6 @@ export class ComprarAccionesService {
     this.simbolo = simboloAccion
   }
 
-  
-
   realizarCompra(compra: CompraDto){
 
     return this.http.post(this.apiUrl, compra);
@@ -30,18 +29,4 @@ export class ComprarAccionesService {
   }
 }
 
-export class Accion {
-  simbolo!: string;
-  descripcion!: string;
-  ultimoPrecio!: number;
-  puntas!: {
-    cantidadCompra: number;
-    precioCompra: number;
-    precioVenta: number;
-    cantidadVenta: number;
-  } | null;
-  apertura!: number;
-  maximo!: number;
-  minimo!: number;
-  ultimoCierre!: number;
-}
+
