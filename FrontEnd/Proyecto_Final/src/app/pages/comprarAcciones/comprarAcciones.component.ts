@@ -5,6 +5,7 @@ import { ComprarAccionesService } from 'src/app/services/comprar-acciones.servic
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompraDto } from 'src/app/Dtos/TransaccionDtos/CompraDto';
 import { AuthService } from 'src/app/services/auth.service';
+import { Accion } from 'src/app/services/Accion';
 
 
 @Component({
@@ -13,17 +14,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./comprarAcciones.component.css']
 })
 export class ComprarAccionesComponent implements OnInit {
-  listSimbolos:any;
-  dropDownValue:string ='no modificado';
-  symbolDrop:any;
-  precioAccion:any;
-  precioTotal:number = 0;
-  cantidadAcciones:number = 1;
-  compraForm:FormGroup;
-  accionSeleccionada:any;
-  compraDto:CompraDto;
+  listSimbolos: any;
+  selectedSimbolo: string = 'no modificado';
+  symbolDrop: any;
+  idAccionDrop: any;
+  precioAccion: any;
+  precioTotal: number = 0;
+  cantidadAcciones: number = 1;
+  compraForm: FormGroup;
+  accionSeleccionada: any;
+  compraDto: CompraDto;
+  acciones: any;
 
-  constructor(private comprarAccionesService:ComprarAccionesService, private formBuilder:FormBuilder, private authService: AuthService) {
+  constructor(private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService) {
     this.compraForm = this.formBuilder.group({
       mercado: ['', Validators.required],
       simbolo: ['', Validators.required],
@@ -31,29 +34,30 @@ export class ComprarAccionesComponent implements OnInit {
     })
     this.compraDto = {
 
-      idUsuario: 0, 
-      idCuenta: 0, 
-      idAccion: '',
+      idUsuario: 0,
+      idCuenta: 0,
+      idAccion: 0,
       cantidad: 0,
       saldo: 0
 
     }
-   }
+  }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.comprarAccionesService.getDatosAccion().subscribe({
       next: (listSimbolos) => {
         this.symbolDrop = this.comprarAccionesService.simbolo
+        this.idAccionDrop = this.comprarAccionesService.id
         this.listSimbolos = listSimbolos["titulos"]
-        for (let item of this.listSimbolos){
-          if (item.simbolo === this.symbolDrop){
+        console.log(this.symbolDrop);
+        for (let item of this.listSimbolos) {
+          if (item.simbolo === this.symbolDrop) {
             this.accionSeleccionada = item;
           }
-        } 
+        }
         this.precioAccion = this.accionSeleccionada.puntas.precioCompra ==
-        null ? "Sin precio definido": Number(this.accionSeleccionada.puntas.precioCompra);
+          null ? "Sin precio definido" : Number(this.accionSeleccionada.puntas.precioCompra);
         this.precioTotal = 0;
-        console.log(this.symbolDrop)
       },
       error: (error) => {
         console.error(error);
@@ -62,19 +66,21 @@ export class ComprarAccionesComponent implements OnInit {
         console.info("get simbolos complete")
       }
     });
-
-    this.authService.getUsuario().subscribe(userData => {
-      this.compraDto.idUsuario = userData.idUsuario;
-      this.compraDto.saldo = userData.saldo;
-    });
-
-    this.authService.getIdCuenta().subscribe(accountData => {
-
-      this.compraDto.idCuenta = accountData.idCuenta;
+    this.comprarAccionesService.getAccionApi().subscribe({
+      next: (data: Accion[]) => {
+        this.acciones = data;
+        console.log(this.acciones);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.info("Obtención de datos de acciones de la completa");
+      }
     });
   }
 
-  getSimbolos(){
+  getSimbolos() {
     this.comprarAccionesService.getDatosAccion().subscribe({
       next: (listSimbolos) => {
         this.listSimbolos = listSimbolos
@@ -88,43 +94,49 @@ export class ComprarAccionesComponent implements OnInit {
     });
   }
 
-  getSimboloDropdown(value:string){
-    console.log("Simbolo seleccionado: ", value);
-    this.compraDto.idAccion = value;
-    return this.dropDownValue=value;    
+  getSimboloDropdown(simbolo: string) {
+    console.log("Simbolo seleccionado: ", simbolo);
+    const accionSeleccionada = this.acciones.find((accion: Accion) => accion.simbolo === simbolo);
+    console.log("Accion seleccionada: ", accionSeleccionada)
+    if (accionSeleccionada) {
+      this.compraDto.idAccion = accionSeleccionada.idAccion;
+    } else {
+      console.error('No se encontró la acción correspondiente al símbolo seleccionado.');
+    }
   }
+  
 
-  getBySimbolo(simbolo:any){
-      for (let item of this.listSimbolos){
-        if (item.simbolo === simbolo){
-          this.precioAccion = !item.puntas? "Sin precio definido" : Number(item.puntas.precioCompra);
-          return this.precioAccion;
-        }
+  getBySimbolo(simbolo: any) {
+    for (let item of this.listSimbolos) {
+      if (item.simbolo === simbolo) {
+        this.precioAccion = !item.puntas ? "Sin precio definido" : Number(item.puntas.precioCompra);
+        return this.precioAccion;
       }
+    }
   }
 
-  calcularTotal(cantidad:any){
+  calcularTotal(cantidad: any) {
     this.cantidadAcciones = cantidad;
     this.compraDto.cantidad = cantidad;
-    this.precioTotal = Number((Number(this.cantidadAcciones)*Number(this.precioAccion)).toFixed(2));
+    this.precioTotal = Number((Number(this.cantidadAcciones) * Number(this.precioAccion)).toFixed(2));
     return this.precioTotal
   }
 
-  comprarAcciones(){
+  comprarAcciones() {
     this.compraDto.idUsuario = 0;
     this.compraDto.idCuenta = 0;
     this.compraDto.saldo = 0;
-    
+
     this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
       (response) => {
-        console.log("Acciones compradas con éxito");
+        console.log(response);
       },
       (error) => {
         console.error("Error al comprar acciones:", error);
       }
-      );
+    );
     console.log(this.compraDto);
-    }
+  }
 }
 
 

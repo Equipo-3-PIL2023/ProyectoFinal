@@ -10,22 +10,28 @@ import { Accion } from './Accion';
 export class ComprarAccionesService {
   url: string = "./assets/Data/06-07-23.json";
   simbolo:string = '';
+  id:number = 0;
 
-  private apiUrl = 'https://localhost:7042/api/Usuario';
+  private apiAccion = 'https://localhost:44342/api/Accion';
 
   constructor(private http: HttpClient) { }
 
   getDatosAccion(): Observable<any> {
     return this.http.get<Accion[]>(this.url);
   }
+  
   getAccionSeleccionada(simboloAccion:string){
     this.simbolo = simboloAccion
   }
 
   realizarCompra(compra: CompraDto){
 
-    return this.http.post(this.apiUrl, compra);
+    return this.http.post(this.apiAccion, compra);
 
+  }
+
+  getAccionApi():Observable<any>{
+    return this.http.get<Accion[]>(this.apiAccion);
   }
 }
 

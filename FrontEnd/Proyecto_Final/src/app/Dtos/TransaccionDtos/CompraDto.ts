@@ -1,7 +1,7 @@
 export interface CompraDto {
   idUsuario: number;
   idCuenta: number;
-  idAccion : string;
+  idAccion : number;
   cantidad: number;
   saldo: number;
 }
