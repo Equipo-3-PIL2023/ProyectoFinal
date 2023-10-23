@@ -66,6 +66,7 @@ export class ComprarAccionesComponent implements OnInit {
         console.info("get simbolos complete")
       }
     });
+    
     this.comprarAccionesService.getAccionApi().subscribe({
       next: (data: Accion[]) => {
         this.acciones = data;
@@ -78,6 +79,19 @@ export class ComprarAccionesComponent implements OnInit {
         console.info("Obtención de datos de acciones de la completa");
       }
     });
+
+    this.authService.getCuenta().subscribe(data => {
+      const idUsuario = data.id
+      this.compraDto.idUsuario = idUsuario;
+      console.log(this.compraDto.idUsuario);
+    })
+
+    this.authService.getCuenta().subscribe(data => {
+      const idCuenta = data.idCuenta;
+      this.compraDto.idCuenta = idCuenta;
+      console.log(this.compraDto.idCuenta);
+    });
+
   }
 
   getSimbolos() {
