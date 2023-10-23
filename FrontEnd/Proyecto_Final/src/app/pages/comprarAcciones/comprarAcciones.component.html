@@ -28,7 +28,7 @@
       <div class="row p-2">
         <div class="col-md-6">Símbolo</div>
         <div class="col-md-6">
-          <select
+          <select [(ngModel)]="dropDownValue" (change)="getSimboloDropdown(dropDownValue)"
             formControlName="simbolo"          
             #drop
             (change)="getBySimbolo(drop.value)"
