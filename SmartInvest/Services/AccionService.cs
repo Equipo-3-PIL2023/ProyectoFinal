@@ -38,5 +38,23 @@ namespace SmartInvest.Services
         {
             _accionDbContext.Delete(id);
         }
+
+        public async Task<AccionDto> Update(int id, AccionDto accionDto)
+        {
+            AccionModel existingAccion = await _accionDbContext.Get(id);
+
+            if (existingAccion == null)
+            {
+                return null;
+            }
+
+            existingAccion.nombre = accionDto.nombre;
+            existingAccion.simbolo = accionDto.simbolo;
+
+            await _accionDbContext.SaveChangesAsync();
+
+            return existingAccion.ToDo();
+        }
+
     }
 }

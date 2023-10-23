@@ -58,5 +58,38 @@ namespace SmartInvest.Controllers
         }
 
         */
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, NewUsuarioDto usuarioDto)
+        {            
+            UsuarioDto existingUser = await _userService.Get(id);
+
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+                        
+            UsuarioDto updatedUser = new UsuarioDto
+            {
+                Id = id,
+                Nombre = usuarioDto.Nombre,
+                Apellido = usuarioDto.Apellido,
+                Email = usuarioDto.Email,                                          
+                Dni = usuarioDto.Dni,
+                TipoDocumento = usuarioDto.TipoDocumento,
+                Telefono = usuarioDto.Telefono,
+                CodigoPostal = usuarioDto.CodigoPostal,
+                Ciudad = usuarioDto.Ciudad,
+                Provincia = usuarioDto.Provincia,
+                Pais = usuarioDto.Pais,
+            };
+                        
+            UsuarioDto result = await _userService.Update(id, updatedUser);
+
+            return Ok(result);
+        }
+
+
     }
 }

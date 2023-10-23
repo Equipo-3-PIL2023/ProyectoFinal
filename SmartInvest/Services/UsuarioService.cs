@@ -94,5 +94,32 @@ namespace SmartInvest.Services
             return entity.ToDto();
         }
         */
+
+        public async Task<UsuarioDto> Update(int id, UsuarioDto usuarioDto)
+        {
+            UsuarioModel existingUser = await _usuarioDbContext.Get(id);
+
+            if (existingUser == null)
+            {
+                return null;
+            }
+                        
+            existingUser.nombre = usuarioDto.Nombre;
+            existingUser.apellido = usuarioDto.Apellido;
+            existingUser.correo = usuarioDto.Email;            
+            existingUser.dni = usuarioDto.Dni;
+            existingUser.tipoDni = usuarioDto.TipoDocumento;
+            existingUser.telefono = usuarioDto.Telefono;
+            existingUser.codigoPostal = usuarioDto.CodigoPostal;
+            existingUser.ciudad = usuarioDto.Ciudad;
+            existingUser.provincia = usuarioDto.Provincia;
+            existingUser.pais = usuarioDto.Pais;
+
+            await _usuarioDbContext.SaveChangesAsync();
+
+            return existingUser.ToDto();
+        }
+
+
     }
 }
