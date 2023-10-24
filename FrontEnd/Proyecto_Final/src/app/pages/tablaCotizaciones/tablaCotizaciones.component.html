@@ -1,42 +1,61 @@
-<div class="animated fadeIn cotizaciones"> 
-    <div class="container">
-        <h1 class="text-center mt-3">Acciones Argentinas</h1>
-        <div class="table-responsive">
-            <table class=" ">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Símbolo</th>
-                        <th scope="col">Último Operado</th>
-                        <th scope="col">Cantidad Compra</th>
-                        <th scope="col">Precio Compra</th>
-                        <th scope="col">Precio Venta</th>
-                        <th scope="col">Cantidad Venta</th>
-                        <th scope="col">Apertura</th>
-                        <th scope="col">Minimo Diario</th>
-                        <th scope="col">Maximo Diario</th>
-                        <th scope="col">Precio Cierre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let cotizacion of cotizaciones">
-                        <td>{{ cotizacion.descripcion  }}</td>
-                        <td>{{ cotizacion.simbolo  }}</td>
-                        <td>{{ cotizacion.ultimoPrecio  }}</td>
-                        <td>{{ cotizacion.puntas?.cantidadCompra ?? "-"  }}</td>
-                        <td>{{ cotizacion.puntas?.precioCompra ?? "-"  }}</td>
-                        <td>{{ cotizacion.puntas?.precioVenta ?? "-"  }}</td>
-                        <td>{{ cotizacion.puntas?.cantidadVenta ?? "-"  }}</td>
-                        <td>{{ cotizacion.apertura  }}</td>
-                        <td>{{ cotizacion.minimo  }}</td>
-                        <td>{{ cotizacion.maximo  }}</td>
-                        <td>{{ cotizacion.ultimoCierre  }}</td>
-                        <td><button (click)="cargarAccion(cotizacion.simbolo)" routerLink="/comprar" class="btn btn-green">Comprar</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="animated fadeIn cotizaciones">
+  <div class="container">
+    <h1 class="text-center mt-3">Acciones Argentinas</h1>
+    <div class="table-responsive">
+      <table class=" ">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Símbolo</th>
+            <th scope="col">Último Operado</th>
+            <th scope="col">Cantidad Compra</th>
+            <th scope="col">Precio Compra</th>
+            <th scope="col">Precio Venta</th>
+            <th scope="col">Cantidad Venta</th>
+            <th scope="col">Apertura</th>
+            <th scope="col">Minimo Diario</th>
+            <th scope="col">Maximo Diario</th>
+            <th scope="col">Precio Cierre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cotizacion of cotizaciones">
+            <td>{{ cotizacion.descripcion }}</td>
+            <td>{{ cotizacion.simbolo }}</td>
+            <td>{{ cotizacion.ultimoPrecio }}</td>
+            <td>{{ cotizacion.puntas?.cantidadCompra ?? "-" }}</td>
+            <td>{{ cotizacion.puntas?.precioCompra ?? "-" }}</td>
+            <td>{{ cotizacion.puntas?.precioVenta ?? "-" }}</td>
+            <td>{{ cotizacion.puntas?.cantidadVenta ?? "-" }}</td>
+            <td>{{ cotizacion.apertura }}</td>
+            <td>{{ cotizacion.minimo }}</td>
+            <td>{{ cotizacion.maximo }}</td>
+            <td>{{ cotizacion.ultimoCierre }}</td>
+            <td>
+                <button
+                *ngIf="cotizacion.puntas !== null"
+                (click)="cargarAccion(cotizacion)"
+                routerLink="/comprar"
+                class="btn btn-green"
+                [attr.disabled]="cotizacion.puntas ? null : true"
+              >
+                Comprar
+              </button>
         
+              <!-- Botón con tooltip cuando puntas es null -->
+              <button
+                *ngIf="cotizacion.puntas === null"
+                class="btn btn-secondary"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Acción no disponible"
+              >
+                Comprar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
-
