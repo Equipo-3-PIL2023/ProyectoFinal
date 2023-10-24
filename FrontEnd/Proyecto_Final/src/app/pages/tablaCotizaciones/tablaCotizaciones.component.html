@@ -34,7 +34,7 @@
             <td>
               <button
                 *ngIf="cotizacion.puntas !== null"
-                (click)="cargarAccion(cotizacion)"
+                (click)="cargarAccion(cotizacion.simbolo)"
                 routerLink="/comprar"
                 class="btn btn-green"
                 [attr.disabled]="cotizacion.puntas ? null : true"
