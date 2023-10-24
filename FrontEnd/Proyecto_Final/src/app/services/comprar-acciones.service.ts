@@ -12,6 +12,7 @@ export class ComprarAccionesService {
   simbolo:string = '';
   id:number = 0;
 
+  private apiTransaccion = 'https://localhost:44342/api/Transaccion'
   private apiAccion = 'https://localhost:44342/api/Accion';
 
   constructor(private http: HttpClient) { }
@@ -26,7 +27,7 @@ export class ComprarAccionesService {
 
   realizarCompra(compra: CompraDto){
 
-    return this.http.post(this.apiAccion, compra);
+    return this.http.post(this.apiTransaccion, compra);
 
   }
 

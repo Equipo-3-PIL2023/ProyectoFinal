@@ -1,4 +1,4 @@
-import { getCurrencySymbol } from '@angular/common';
+import { formatDate, getCurrencySymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { find } from 'rxjs';
 import { ComprarAccionesService } from 'src/app/services/comprar-acciones.service';
@@ -85,9 +85,7 @@ export class ComprarAccionesComponent implements OnInit {
 
     this.authService.getCuenta().subscribe(data => {
       this.compraDto.idCuenta = data.idCuenta;
-      this.compraDto.precioCompra = this.precioTotal;
-      this.compraDto.comision = this.precioTotal*1.015,
-      this.compraDto.fecha = new Date().toString();
+      this.compraDto.fecha = formatDate(new Date(), 'yyyy-MM-dd', 'en');
     })
 
     this.authService.getCuenta().subscribe(data => {
@@ -141,8 +139,9 @@ export class ComprarAccionesComponent implements OnInit {
   }
 
   comprarAcciones() {
-    this.compraDto.idCuenta = 0;
 
+    this.compraDto.precioCompra = this.precioTotal;
+    this.compraDto.comision = this.precioTotal*1.015,
     this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
       (response) => {
         console.log(response);
