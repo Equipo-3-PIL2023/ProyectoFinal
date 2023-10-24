@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompraDto } from 'src/app/Dtos/TransaccionDtos/CompraDto';
 import { AuthService } from 'src/app/services/auth.service';
 import { Accion } from 'src/app/services/Accion';
+import { VariableBinding } from '@angular/compiler';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class ComprarAccionesComponent implements OnInit {
   acciones: any;
 
   constructor(private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService) {
+    var idUser : number;
     this.compraForm = this.formBuilder.group({
       mercado: ['', Validators.required],
       simbolo: ['', Validators.required],
@@ -34,11 +36,12 @@ export class ComprarAccionesComponent implements OnInit {
     })
     this.compraDto = {
 
-      idUsuario: 0,
       idCuenta: 0,
       idAccion: 0,
+      fecha: '',
+      precioCompra: 0,
       cantidad: 0,
-      saldo: 0
+      comision: 0
 
     }
   }
@@ -81,9 +84,10 @@ export class ComprarAccionesComponent implements OnInit {
     });
 
     this.authService.getCuenta().subscribe(data => {
-      const idUsuario = data.id
-      this.compraDto.idUsuario = idUsuario;
-      console.log(this.compraDto.idUsuario);
+      this.compraDto.idCuenta = data.idCuenta;
+      this.compraDto.precioCompra = this.precioTotal;
+      this.compraDto.comision = this.precioTotal*1.015,
+      this.compraDto.fecha = new Date().toString();
     })
 
     this.authService.getCuenta().subscribe(data => {
@@ -137,9 +141,7 @@ export class ComprarAccionesComponent implements OnInit {
   }
 
   comprarAcciones() {
-    this.compraDto.idUsuario = 0;
     this.compraDto.idCuenta = 0;
-    this.compraDto.saldo = 0;
 
     this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
       (response) => {

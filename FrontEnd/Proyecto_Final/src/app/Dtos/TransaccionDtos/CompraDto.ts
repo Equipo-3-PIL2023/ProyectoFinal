@@ -1,7 +1,8 @@
 export interface CompraDto {
-  idUsuario: number;
   idCuenta: number;
   idAccion : number;
+  fecha: string;
+  precioCompra: number;
   cantidad: number;
-  saldo: number;
+  comision: number;
 }
