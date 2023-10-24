@@ -9,10 +9,12 @@ namespace SmartInvest.Controllers
     public class TransaccionController : Controller
     {
         private readonly TransaccionService _transaccionService;
+        private readonly CuentaService _cuentaService;
 
-        public TransaccionController(TransaccionService transaccionService)
+        public TransaccionController(TransaccionService transaccionService, CuentaService cuentaService)
         {
             _transaccionService = transaccionService;
+            _cuentaService = cuentaService;
         }
 
         [HttpGet]
@@ -39,7 +41,15 @@ namespace SmartInvest.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(NewTransaccionDto transaccionDto)
         {
-            return Ok(await _transaccionService.Create(transaccionDto));
+            var cuentaUsuario = _cuentaService.Get(transaccionDto.idCuenta);
+            if (cuentaUsuario.Result.saldo >= transaccionDto.precioCompra + transaccionDto.comision)
+            {
+                return Ok(await _transaccionService.Create(transaccionDto));
+            }
+            else
+            {
+                return BadRequest("Saldo insuficiente");
+            }
         }
 
         [HttpDelete]

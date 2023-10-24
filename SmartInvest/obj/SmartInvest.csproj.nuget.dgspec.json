@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\frigh\\REPOS\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj": {}
+    "D:\\Ignacio\\Ignacio\\ISPC\\Develops\\SmartInvestDevelop\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\frigh\\REPOS\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj": {
+    "D:\\Ignacio\\Ignacio\\ISPC\\Develops\\SmartInvestDevelop\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\frigh\\REPOS\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj",
+        "projectUniqueName": "D:\\Ignacio\\Ignacio\\ISPC\\Develops\\SmartInvestDevelop\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj",
         "projectName": "SmartInvest",
-        "projectPath": "C:\\Users\\frigh\\REPOS\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj",
-        "packagesPath": "C:\\Users\\frigh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\frigh\\REPOS\\ProyectoFinal\\SmartInvest\\obj\\",
+        "projectPath": "D:\\Ignacio\\Ignacio\\ISPC\\Develops\\SmartInvestDevelop\\ProyectoFinal\\SmartInvest\\SmartInvest.csproj",
+        "packagesPath": "C:\\Users\\Ignac\\.nuget\\packages\\",
+        "outputPath": "D:\\Ignacio\\Ignacio\\ISPC\\Develops\\SmartInvestDevelop\\ProyectoFinal\\SmartInvest\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\frigh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ignac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

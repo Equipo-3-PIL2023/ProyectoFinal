@@ -1,4 +1,5 @@
-﻿using SmartInvest.Dtos.TransaccionDto;
+﻿using SmartInvest.Dtos.CuentaDto;
+using SmartInvest.Dtos.TransaccionDto;
 using SmartInvest.Models;
 using SmartInvest.Repositories;
 
@@ -7,10 +8,12 @@ namespace SmartInvest.Services
     public class TransaccionService
     {
         private readonly TransaccionDBContext _transaccionDbContext;
+        private readonly CuentaService _cuentaService;
 
-        public TransaccionService(TransaccionDBContext transaccionDbContext)
+        public TransaccionService(TransaccionDBContext transaccionDbContext, CuentaService cuentaService)
         {
             _transaccionDbContext = transaccionDbContext;
+            _cuentaService = cuentaService;
         }
 
         public async Task<List<TransaccionDto>> Get() 
@@ -40,7 +43,14 @@ namespace SmartInvest.Services
                 cantidad = transaccionDto.cantidad,
                 comision = transaccionDto.comision
             };
-
+            var cuentaUser = _cuentaService.Get(transaccionDto.idCuenta);
+            CuentaSaldoDTO cuentaUpdateSaldo = new CuentaSaldoDTO
+            {
+                idCuenta = transaccionDto.idCuenta,
+                TotalInvertido = transaccionDto.precioCompra + transaccionDto.comision,
+                saldo = cuentaUser.Result.saldo
+            };
+            _cuentaService.ActualizarSaldo(cuentaUpdateSaldo);
             TransaccionModel entity = await _transaccionDbContext.Create(newTransaccion);
             return entity.ToDo();
         }

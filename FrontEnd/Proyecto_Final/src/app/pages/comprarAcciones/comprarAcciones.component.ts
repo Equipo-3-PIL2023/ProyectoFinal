@@ -141,7 +141,7 @@ export class ComprarAccionesComponent implements OnInit {
   comprarAcciones() {
 
     this.compraDto.precioCompra = this.precioTotal;
-    this.compraDto.comision = this.precioTotal*1.015,
+    this.compraDto.comision = this.precioTotal*0.015,
     this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
       (response) => {
         console.log(response);
