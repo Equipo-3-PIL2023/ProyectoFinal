@@ -32,7 +32,7 @@
             <td>{{ cotizacion.maximo }}</td>
             <td>{{ cotizacion.ultimoCierre }}</td>
             <td>
-                <button
+              <button
                 *ngIf="cotizacion.puntas !== null"
                 (click)="cargarAccion(cotizacion)"
                 routerLink="/comprar"
@@ -41,7 +41,6 @@
               >
                 Comprar
               </button>
-        
               <!-- Botón con tooltip cuando puntas es null -->
               <button
                 *ngIf="cotizacion.puntas === null"

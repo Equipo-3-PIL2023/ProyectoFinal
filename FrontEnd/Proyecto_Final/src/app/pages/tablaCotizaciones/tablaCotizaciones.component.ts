@@ -11,7 +11,11 @@ import { Accion } from 'src/app/services/Accion';
 export class TablaCotizacionesComponent implements OnInit {
   cotizaciones: any;
 
-  constructor(private comprarAccionesService: ComprarAccionesService) { }
+  constructor(private comprarAccionesService: ComprarAccionesService) { 
+
+    this.comprarAccionesService.getDatosAccion()
+
+  }
 
   ngOnInit() {
     this.comprarAccionesService.getDatosAccion().subscribe(data => {
@@ -28,5 +32,4 @@ export class TablaCotizacionesComponent implements OnInit {
   cargarAccion(item:any){
     this.comprarAccionesService.getAccionSeleccionada(item)
   }
-
 }
