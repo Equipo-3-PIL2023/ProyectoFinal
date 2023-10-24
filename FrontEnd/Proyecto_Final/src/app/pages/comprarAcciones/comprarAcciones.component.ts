@@ -26,9 +26,12 @@ export class ComprarAccionesComponent implements OnInit {
   accionSeleccionada: any;
   compraDto: CompraDto;
   acciones: any;
+  cantMax: any;
+
+
 
   constructor(private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService) {
-    var idUser : number;
+    var idUser: number;
     this.compraForm = this.formBuilder.group({
       mercado: ['', Validators.required],
       simbolo: ['', Validators.required],
@@ -50,17 +53,17 @@ export class ComprarAccionesComponent implements OnInit {
     this.comprarAccionesService.getDatosAccion().subscribe({
       next: (listSimbolos) => {
         this.symbolDrop = this.comprarAccionesService.simbolo
-        this.idAccionDrop = this.comprarAccionesService.id
         this.listSimbolos = listSimbolos["titulos"]
-        console.log(this.symbolDrop);
         for (let item of this.listSimbolos) {
           if (item.simbolo === this.symbolDrop) {
             this.accionSeleccionada = item;
           }
         }
+        this.cantMax = this.accionSeleccionada.puntas?.cantidadCompra == null ? "Cantidad maxima no definida" : Number(this.accionSeleccionada.puntas.cantidadCompra);
         this.precioAccion = this.accionSeleccionada.puntas.precioCompra ==
           null ? "Sin precio definido" : Number(this.accionSeleccionada.puntas.precioCompra);
         this.precioTotal = 0;
+        console.log("Cantidad maxima de compra de accion: ", this.accionSeleccionada, this.cantMax);
       },
       error: (error) => {
         console.error(error);
@@ -69,11 +72,11 @@ export class ComprarAccionesComponent implements OnInit {
         console.info("get simbolos complete")
       }
     });
-    
+
     this.comprarAccionesService.getAccionApi().subscribe({
       next: (data: Accion[]) => {
         this.acciones = data;
-        console.log(this.acciones);
+        // console.log(this.acciones);
       },
       error: (error) => {
         console.error(error);
@@ -120,7 +123,7 @@ export class ComprarAccionesComponent implements OnInit {
       console.error('No se encontró la acción correspondiente al símbolo seleccionado.');
     }
   }
-  
+
 
   getBySimbolo(simbolo: any) {
     for (let item of this.listSimbolos) {
@@ -141,16 +144,30 @@ export class ComprarAccionesComponent implements OnInit {
   comprarAcciones() {
 
     this.compraDto.precioCompra = this.precioTotal;
-    this.compraDto.comision = this.precioTotal*0.015,
-    this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.error("Error al comprar acciones:", error);
-      }
-    );
+    this.compraDto.comision = this.precioTotal * 0.015,
+      this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.error("Error al comprar acciones:", error);
+        }
+      );
     console.log(this.compraDto);
+  }
+
+  validarCantidad() {
+    const cantidadControl = this.compraForm.get('cantidad');
+    if (cantidadControl) {
+      const cantidadIntroducida = cantidadControl.value;
+      if (cantidadIntroducida > this.cantMax) {
+        cantidadControl.setErrors({ maxCantidadExcedida: true });
+      } else if (cantidadIntroducida < 1) {
+        cantidadControl.setErrors({ minCantidadInvalida: true });
+      } else {
+        cantidadControl.setErrors(null);
+      }
+    }
   }
 }
 

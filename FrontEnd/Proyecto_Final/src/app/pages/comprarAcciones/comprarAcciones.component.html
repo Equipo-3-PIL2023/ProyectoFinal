@@ -28,21 +28,27 @@
       <div class="row p-2">
         <div class="col-md-6">Símbolo</div>
         <div class="col-md-6">
-          <select [(ngModel)]="selectedSimbolo" (change)="getSimboloDropdown(selectedSimbolo)"
-            formControlName="simbolo"          
+          <select
+            [(ngModel)]="selectedSimbolo"
+            (change)="getSimboloDropdown(selectedSimbolo)"
+            formControlName="simbolo"
             #drop
             (change)="getBySimbolo(drop.value)"
             (change)="calcularTotal(cantidad.value)"
             id="dropdownSimbolo"
-            class="form-control"            
+            class="form-control"
           >
-            <option id="optionDrop" *ngFor="let item of listSimbolos" [selected]="item.simbolo === symbolDrop">
+            <option
+              id="optionDrop"
+              *ngFor="let item of listSimbolos"
+              [selected]="item.simbolo === symbolDrop"
+            >
               {{ item.simbolo }}
             </option>
           </select>
           <!-- Mensaje de error de campo requerido -->
           <div
-            *ngIf="            
+            *ngIf="
               compraForm.get('simbolo')?.invalid &&
               (compraForm.get('simbolo')?.dirty ||
                 compraForm.get('simbolo')?.touched)
@@ -72,7 +78,10 @@
               min="1"
               class="form-control"
               value="1"
-              (keyup)="calcularTotal(cantidad.value) && getSimboloDropdown(drop.value)"
+              (keyup)="
+                calcularTotal(cantidad.value) && getSimboloDropdown(drop.value)
+              "
+              (input)="validarCantidad()"
               (click)="calcularTotal(cantidad.value)"
               placeholder="Ejemplo: 120"
               aria-label="Username"
@@ -80,15 +89,15 @@
             />
             <!-- Mensaje de error de campo requerido -->
           </div>
-          <div
-            *ngIf="
-              compraForm.get('cantidad')?.invalid &&
-              (compraForm.get('cantidad')?.dirty ||
-                compraForm.get('cantidad')?.touched)
-            "
-            class="text-danger"
-          >
-            Para realizar la compra este campo es requerido.
+          <div *ngIf="compraForm.get('cantidad')?.hasError('maxCantidadExcedida')">
+            <div class="text-danger">
+              La cantidad de acciones seleccionadas excede el límite máximo permitido.
+            </div>
+          </div>
+          <div *ngIf="compraForm.get('cantidad')?.invalid && compraForm.get('cantidad')?.dirty">
+            <div class="text-danger">
+              Para realizar la compra este campo es requerido.
+            </div>
           </div>
         </div>
       </div>
@@ -155,7 +164,9 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">¿Estás seguro de realizar tu compra?</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          ¿Estás seguro de realizar tu compra?
+        </h1>
         <button
           type="button"
           class="btn-close"
@@ -164,14 +175,16 @@
         ></button>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancelar compra
         </button>
-        <button type="button" class="btn btn-bd-primary" (click)="comprarAcciones()">Si, quiero comprar</button>
+        <button
+          type="button"
+          class="btn btn-bd-primary"
+          (click)="comprarAcciones()"
+        >
+          Si, quiero comprar
+        </button>
       </div>
     </div>
   </div>
