@@ -163,6 +163,7 @@ export class ComprarAccionesComponent implements OnInit {
         },
         (error) => {
           console.error("Error al comprar acciones:", error);
+          alert("Error al comprar acciones: Saldo insuficiente")
         }
       );
     console.log(this.compraDto);
