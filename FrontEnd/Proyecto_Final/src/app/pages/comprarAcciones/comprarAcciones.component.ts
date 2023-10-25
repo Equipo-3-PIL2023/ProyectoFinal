@@ -7,6 +7,7 @@ import { CompraDto } from 'src/app/Dtos/TransaccionDtos/CompraDto';
 import { AuthService } from 'src/app/services/auth.service';
 import { Accion } from 'src/app/services/Accion';
 import { VariableBinding } from '@angular/compiler';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class ComprarAccionesComponent implements OnInit {
 
 
 
-  constructor(private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService, private route: Router) {
     var idUser: number;
     this.compraForm = this.formBuilder.group({
       mercado: ['', Validators.required],
@@ -157,6 +158,7 @@ export class ComprarAccionesComponent implements OnInit {
     this.compraDto.comision = this.precioTotal * 0.015,
       this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
         (response) => {
+          this.route.navigate(['/portafolio'])        
           console.log(response);
         },
         (error) => {
