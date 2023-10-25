@@ -8,6 +8,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Accion } from 'src/app/services/Accion';
 import { VariableBinding } from '@angular/compiler';
 import { Route, Router } from '@angular/router';
+import { ToastrService } from  'ngx-toastr';
+
+
 
 
 @Component({
@@ -32,10 +35,13 @@ export class ComprarAccionesComponent implements OnInit {
   detalleCompra: any = {}
   tituloAccion: any;
   simboloAccion: any;
+  setupToast = {
+    progressBar: true, 
+    closeButton: true,
+  }
 
 
-
-  constructor(private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService, private route: Router) {
+  constructor(private toastr: ToastrService, private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService, private route: Router) {
     var idUser: number;
     this.compraForm = this.formBuilder.group({
       mercado: ['', Validators.required],
@@ -148,7 +154,7 @@ export class ComprarAccionesComponent implements OnInit {
     this.precioTotal = Number((Number(this.cantidadAcciones) * Number(this.precioAccion)).toFixed(2));
 
     this.calcularDetallesCompra(this.cantidadAcciones);
-  
+
     return this.precioTotal
   }
 
@@ -158,12 +164,19 @@ export class ComprarAccionesComponent implements OnInit {
     this.compraDto.comision = this.precioTotal * 0.015,
       this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
         (response) => {
-          this.route.navigate(['/portafolio'])        
+          this.route.navigate(['/portafolio'])
           console.log(response);
+          const compraExito = "Compra realizada exitosamente"
+          this.toastr.success('Compra realizada con éxito', '¡Felicidades!', {
+            progressBar: true
+          }
+          )
         },
         (error) => {
           console.error("Error al comprar acciones:", error);
-          alert("Error al comprar acciones: Saldo insuficiente")
+          //alert("Error al comprar acciones: Saldo insuficiente")
+          const errorSaldo = "Error al comprar acciones: Saldo insuficiente"
+          this.toastr.error(errorSaldo, 'Oops :(', this.setupToast);
         }
       );
     console.log(this.compraDto);
@@ -189,7 +202,6 @@ export class ComprarAccionesComponent implements OnInit {
     this.detalleCompra.comision = this.detalleCompra.subtotal * 0.015;
     this.detalleCompra.total = this.detalleCompra.subtotal + this.detalleCompra.comision;
   }
-  
 }
 
 

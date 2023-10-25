@@ -1,3 +1,4 @@
+@import 'ngx-toastr/toastr';
 body, html{
     background: linear-gradient(#0D0E26, #1F0840);
     height: 100%;
