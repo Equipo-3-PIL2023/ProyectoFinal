@@ -27,6 +27,10 @@ export class ComprarAccionesComponent implements OnInit {
   compraDto: CompraDto;
   acciones: any;
   cantMax: any;
+  cantMin: any;
+  detalleCompra: any = {}
+  tituloAccion: any;
+  simboloAccion: any;
 
 
 
@@ -59,6 +63,9 @@ export class ComprarAccionesComponent implements OnInit {
             this.accionSeleccionada = item;
           }
         }
+        this.tituloAccion = this.accionSeleccionada.descripcion
+        this.simboloAccion = this.accionSeleccionada.simbolo
+        this.cantMin = this.accionSeleccionada.laminaMinima
         this.cantMax = this.accionSeleccionada.puntas?.cantidadCompra == null ? "Cantidad maxima no definida" : Number(this.accionSeleccionada.puntas.cantidadCompra);
         this.precioAccion = this.accionSeleccionada.puntas.precioCompra ==
           null ? "Sin precio definido" : Number(this.accionSeleccionada.puntas.precioCompra);
@@ -138,6 +145,9 @@ export class ComprarAccionesComponent implements OnInit {
     this.cantidadAcciones = cantidad;
     this.compraDto.cantidad = cantidad;
     this.precioTotal = Number((Number(this.cantidadAcciones) * Number(this.precioAccion)).toFixed(2));
+
+    this.calcularDetallesCompra(this.cantidadAcciones);
+  
     return this.precioTotal
   }
 
@@ -154,6 +164,7 @@ export class ComprarAccionesComponent implements OnInit {
         }
       );
     console.log(this.compraDto);
+    console.log("Compra confirmada:", this.detalleCompra);
   }
 
   validarCantidad() {
@@ -169,6 +180,13 @@ export class ComprarAccionesComponent implements OnInit {
       }
     }
   }
+
+  calcularDetallesCompra(cantidad: any) {
+    this.detalleCompra.subtotal = cantidad * this.precioAccion;
+    this.detalleCompra.comision = this.detalleCompra.subtotal * 0.015;
+    this.detalleCompra.total = this.detalleCompra.subtotal + this.detalleCompra.comision;
+  }
+  
 }
 
 

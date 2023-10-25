@@ -89,12 +89,20 @@
             />
             <!-- Mensaje de error de campo requerido -->
           </div>
-          <div *ngIf="compraForm.get('cantidad')?.hasError('maxCantidadExcedida')">
+          <div
+            *ngIf="compraForm.get('cantidad')?.hasError('maxCantidadExcedida')"
+          >
             <div class="text-danger">
-              La cantidad de acciones seleccionadas excede el límite máximo permitido.
+              La cantidad de acciones seleccionadas excede el límite máximo
+              permitido.
             </div>
           </div>
-          <div *ngIf="compraForm.get('cantidad')?.invalid && compraForm.get('cantidad')?.dirty">
+          <div
+            *ngIf="
+              compraForm.get('cantidad')?.invalid &&
+              compraForm.get('cantidad')?.dirty
+            "
+          >
             <div class="text-danger">
               Para realizar la compra este campo es requerido.
             </div>
@@ -165,7 +173,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">
-          ¿Estás seguro de realizar tu compra?
+          Detalles de la compra
         </h1>
         <button
           type="button"
@@ -174,16 +182,50 @@
           aria-label="Close"
         ></button>
       </div>
+      <div class="modal-body">
+        <p><strong>Título de la Acción:</strong> {{ tituloAccion }}</p>
+        <p><strong>Símbolo de la Acción:</strong> {{ simboloAccion }}</p>
+        <p><strong>Cantidad Mínima:</strong> {{ cantMin }}</p>
+        <p><strong>Cantidad Máxima:</strong> {{ cantMax }}</p>
+        <p><strong>Valor por Unidad:</strong> $ARS {{ precioAccion }}</p>
+      </div>
+      <div class="container modal-body">
+        <div class="row">
+          <div class="col">
+            <p>
+              <strong>Cantidad seleccionada:</strong>
+              {{ cantidadAcciones }}
+            </p>
+          </div>
+          <div class="col">
+            <input formControlName="cantidadDetalle" #cantidadInput type="number" min="1" class="form-control-sm" (keyup)="calcularTotal(cantidadInput.value)" (input)="validarCantidad()" placeholder="{{cantidadAcciones}}">
+          </div>
+        </div>
+        <p>
+          <strong>Subtotal:</strong> $ARS
+          {{ detalleCompra.subtotal | number : "1.2-2" }}
+        </p>
+        <p>
+          <strong>Comisión:</strong> $ARS
+          {{ detalleCompra.comision | number : "1.2-2" }}
+        </p>
+        <p>
+          <strong>Total a Pagar:</strong> $ARS
+          {{ detalleCompra.total | number : "1.2-2" }}
+        </p>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancelar compra
+          Cancelar
         </button>
         <button
           type="button"
           class="btn btn-bd-primary"
           (click)="comprarAcciones()"
+          routerLink="/portafolio"
+          data-bs-dismiss="modal"
         >
-          Si, quiero comprar
+          Confirmar Compra
         </button>
       </div>
     </div>
