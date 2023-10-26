@@ -2,7 +2,9 @@
   background: white;
   background: linear-gradient(#0d0e26, #1f0840);
   color: white;
-  height: 70%;  
+  min-height: 40vh;
+  /* height: 70%; */
+
 }
 
 h1 {
