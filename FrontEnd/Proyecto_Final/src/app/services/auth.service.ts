@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, from, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, from, map, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { Cuenta } from '../pages/portafolio/clases/cuenta';
 @Injectable({
@@ -16,6 +16,9 @@ export class AuthService {
   urlActualizarCuenta: string = "https://localhost:44342/actualizar/"
   urlUsuario: string = ""
   userLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  nombreUsuario: any;
+  
+  urlUserId: string = "";
 
   constructor(private http: HttpClient, private route: Router) {
 
@@ -26,6 +29,7 @@ export class AuthService {
       tap((loginData) => {
         this.userLoginOn.next(true);
         this.urlUsuario = "https://localhost:44342/User/" + loginData;
+        this.urlUserId = "https://localhost:44342/api/Usuario/" + loginData;
       })
     )
   }
@@ -64,26 +68,11 @@ export class AuthService {
   }
 
   getUsuario(): Observable<any> {
-
-    return from(this.getCuenta()).pipe(
-      switchMap((data) => {
-
-        this.urlUsuario = "https://localhost:44342/api/Usuario/" + data.idUsuario;
-        return this.http.get(this.urlUsuario);
-
+    return this.http.get(this.urlUserId).pipe(
+      map((data: any) => {
+        console.log('Nombre del usuario autenticado:', data.nombre)
+        return data.nombre;
       })
-    )
-  }
-
-  getIdCuenta(): Observable<any> {
-
-    return from(this.getCuenta()).pipe(
-      switchMap((data) => {
-
-        this.urlUsuario = "https://localhost:44342/api/Usuario/" + data.idCuenta;
-        return this.http.get(this.urlUsuario);
-
-      })
-    )
+    );
   }
 }
