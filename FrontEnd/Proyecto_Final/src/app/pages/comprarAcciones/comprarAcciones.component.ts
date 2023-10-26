@@ -168,7 +168,7 @@ export class ComprarAccionesComponent implements OnInit {
     this.compraDto.precioCompra = this.precioTotal;
     this.compraDto.comision = this.precioTotal * 0.015;
 
-    if (this.saldoCuenta >= this.precioTotal) {
+    if (this.saldoCuenta >= (this.precioTotal + (this.precioTotal * 0.015))) {
 
       this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
         (response) => {

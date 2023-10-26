@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { NewUsuarioDto } from 'src/app/Dtos/UsuarioDtos/NewUsuarioDto';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -34,7 +35,7 @@ export class RegistrerComponent implements OnInit {
   tipoDoc : string  = 'DNI';
   aceptaTerminos : boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router:Router, private usuarioService: UsuariosService) { }
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private authService: AuthService, private router:Router, private usuarioService: UsuariosService) { }
 
 
   ngOnInit() {
@@ -73,6 +74,9 @@ export class RegistrerComponent implements OnInit {
     this.usuarioService.createUsuario(this.registerForm.value as NewUsuarioDto).subscribe({
       next:(usuario) => {
         this.router.navigate(['/login'])        
+        this.toastr.success('Registro realizado con éxito', '¡Felicidades!', {
+          progressBar: true
+        })        
       },
       error: (error) => {console.log(error);},
       complete:()=> {}
