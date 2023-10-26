@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Accion } from 'src/app/services/Accion';
 import { VariableBinding } from '@angular/compiler';
 import { Route, Router } from '@angular/router';
-import { ToastrService } from  'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -36,9 +36,11 @@ export class ComprarAccionesComponent implements OnInit {
   tituloAccion: any;
   simboloAccion: any;
   setupToast = {
-    progressBar: true, 
+    progressBar: true,
     closeButton: true,
   }
+  idCuenta: any;
+  saldoCuenta: any;
 
 
   constructor(private toastr: ToastrService, private comprarAccionesService: ComprarAccionesService, private formBuilder: FormBuilder, private authService: AuthService, private route: Router) {
@@ -106,11 +108,14 @@ export class ComprarAccionesComponent implements OnInit {
     })
 
     this.authService.getCuenta().subscribe(data => {
-      const idCuenta = data.idCuenta;
-      this.compraDto.idCuenta = idCuenta;
-      console.log(this.compraDto.idCuenta);
+      this.idCuenta = data.idCuenta;
+      this.compraDto.idCuenta = this.idCuenta;
+      console.log(this.idCuenta);
     });
 
+    this.authService.getPortafolio().subscribe(data => {
+      this.saldoCuenta = data.saldoCuenta;
+    })
   }
 
   getSimbolos() {
@@ -161,26 +166,33 @@ export class ComprarAccionesComponent implements OnInit {
   comprarAcciones() {
 
     this.compraDto.precioCompra = this.precioTotal;
-    this.compraDto.comision = this.precioTotal * 0.015,
+    this.compraDto.comision = this.precioTotal * 0.015;
+
+    if (this.saldoCuenta >= this.precioTotal) {
+
       this.comprarAccionesService.realizarCompra(this.compraDto).subscribe(
         (response) => {
+          this.toastr.success('Compra realizada con éxito', '¡Felicidades!', {
+            progressBar: true
+          })
           this.route.navigate(['/portafolio'])
           console.log(response);
           const compraExito = "Compra realizada exitosamente"
-          this.toastr.success('Compra realizada con éxito', '¡Felicidades!', {
-            progressBar: true
-          }
-          )
         },
         (error) => {
           console.error("Error al comprar acciones:", error);
-          //alert("Error al comprar acciones: Saldo insuficiente")
-          const errorSaldo = "Error al comprar acciones: Saldo insuficiente"
-          this.toastr.error(errorSaldo, 'Oops :(', this.setupToast);
         }
       );
-    console.log(this.compraDto);
-    console.log("Compra confirmada:", this.detalleCompra);
+      console.log(this.compraDto);
+      console.log("Compra confirmada:", this.detalleCompra);
+
+    } else {
+      const errorSaldo = "Error al comprar acciones: Saldo insuficiente";
+      this.toastr.error(errorSaldo, 'Oops :(', {
+        progressBar: true,
+        closeButton: true,
+      });
+    }
   }
 
   validarCantidad() {
